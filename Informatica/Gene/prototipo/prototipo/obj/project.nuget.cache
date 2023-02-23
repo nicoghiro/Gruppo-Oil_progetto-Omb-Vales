@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "BHevN7ooJlViVvZrCSMteHF7AGMnz0yuYchiBKJ9tX3t5l9Ef+3Y60XqWdhAvKB/T/VMZeWLKHMZE/QsvIHggQ==",
+  "dgSpecHash": "tjJYxhQGleliS09Gqglec6XfBjdYtePhtyfa8xHlxFkPU5eOQNanEmnHGiAULicC2DWha+Of+ZCHw3Cn2zo3LA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nicolas\\OneDrive\\Desktop\\Gruppo-Oil_progetto-Omb-Vales\\Informatica\\Gene\\prototipo\\prototipo\\prototipo.csproj",
+  "projectFilePath": "C:\\Users\\ghirardi.19370\\Documents\\GitHub\\Gruppo-Oil_progetto-Omb-Vales\\Informatica\\Gene\\prototipo\\prototipo\\prototipo.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nicolas\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\nicolas\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\nicolas\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\nicolas\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\nicolas\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\nicolas\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\nicolas\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\ghirardi.19370\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

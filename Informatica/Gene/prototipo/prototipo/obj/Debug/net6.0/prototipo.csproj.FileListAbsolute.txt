@@ -22,3 +22,11 @@ C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.pdb
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.genruntimeconfig.cache
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\ref\prototipo.dll
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.csproj.AssemblyReference.cache
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.AssemblyInfoInputs.cache
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.AssemblyInfo.cs
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.csproj.CoreCompileInputs.cache
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.dll
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\refint\prototipo.dll
+C:\Users\ghirardi.19370\Documents\GitHub\Gruppo-Oil_progetto-Omb-Vales\Informatica\Gene\prototipo\prototipo\obj\Debug\net6.0\prototipo.pdb
