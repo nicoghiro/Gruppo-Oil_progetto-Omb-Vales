@@ -6,8 +6,6 @@ namespace Progetto_valvole
     {
         ArduinoReader arduinoReader = new ArduinoReader();
         SerialPortReader serialPortReader = new SerialPortReader();
-        FileMenager file = new FileMenager();
-        List<String> righe = new List<string>();
 
         public Screen()
         {
@@ -16,16 +14,10 @@ namespace Progetto_valvole
 
         private void timerCiclo_Tick(object sender, EventArgs e)
         {
-            //arduinoReader.inzio();
-            //listView1.Items.Clear();
-            righe = file.LeggiFile();
-            for (int i = 0; i < righe.Count; i++)
-            {
-                string str = righe[i];
-                ListViewItem riga = new ListViewItem(str.Split(';'));
-                listView1.Items.Add(riga);
-            }
-            //arduinoReader.fine();
+            arduinoReader.inzio();
+            ListViewItem riga = new ListViewItem(); 
+            listView1.Items.Add(riga);     
+            arduinoReader.fine();
             timerCiclo.Enabled = true;
         }
 
@@ -36,9 +28,7 @@ namespace Progetto_valvole
 
         private void buttonSTART_Click(object sender, EventArgs e)
         {
-            arduinoReader.inzio();
             timerCiclo.Enabled = true;
-            //listView1.Items.Clear();
         }
 
         private void buttonSTOP_Click(object sender, EventArgs e)
@@ -53,7 +43,8 @@ namespace Progetto_valvole
             {
                 listView1.Columns.Add(intestazione[i]);
             }
-
+          
+            
         }
     }
 }

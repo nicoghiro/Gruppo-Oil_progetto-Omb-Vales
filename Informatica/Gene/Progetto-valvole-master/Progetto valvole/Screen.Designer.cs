@@ -42,7 +42,6 @@
             this.listView1.Size = new System.Drawing.Size(476, 258);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // buttonSTART
@@ -71,7 +70,7 @@
             // 
             // timerCiclo
             // 
-            this.timerCiclo.Interval = 10000;
+            this.timerCiclo.Interval = 5000;
             this.timerCiclo.Tick += new System.EventHandler(this.timerCiclo_Tick);
             // 
             // Screen
