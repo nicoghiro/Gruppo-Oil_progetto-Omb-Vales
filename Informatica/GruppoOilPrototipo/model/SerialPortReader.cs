@@ -18,7 +18,7 @@ namespace GruppoOilPrototipo
         public SerialPortReader(Form1 form)
         {
             Data = new FileMenager(form);
-            port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+            port = new SerialPort("COM5", 9600, Parity.None, 8, StopBits.One);
         }
 
 

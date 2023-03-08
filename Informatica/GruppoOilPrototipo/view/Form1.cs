@@ -15,6 +15,7 @@ namespace GruppoOilPrototipo
     {
         ArduinoReader ar;
         FileMenager fm;
+        bool misurazioneAttiva;
         public Form1()
         {
             InitializeComponent();
@@ -24,33 +25,55 @@ namespace GruppoOilPrototipo
         {
             ar=new ArduinoReader(this);
             fm = ar.getFileMenager();
-            
+            misurazioneAttiva = false;
             dataGridView1.Columns.Add("p1", "Potenziometro 1");
             dataGridView1.Columns.Add("p2", "Potenziometro 2");
             dataGridView1.Columns.Add("om", "Ora misurazione");
             dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
         }
-
+        void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            if (misurazioneAttiva)
+            {
+                ar.fine();
+                MessageBox.Show("ciqo");
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
+            if (!misurazioneAttiva)
+            {
+                dataGridView1.Rows.Clear();
+            }
             try
             {
                 ar.inzio();
                 dataGridView1.Columns["p1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
+                misurazioneAttiva=true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ar.fine();
+                try
+                {
+                    ar.fine();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            misurazioneAttiva = false;
+            
         }
         public void OttieniMisurazione(string content)
         {
