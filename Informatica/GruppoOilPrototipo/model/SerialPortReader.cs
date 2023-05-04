@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 namespace GruppoOilPrototipo
 {
     public class SerialPortReader
@@ -54,7 +55,23 @@ namespace GruppoOilPrototipo
         }
         private string ScegliPorta()
         {
-            
+            string fileName = "porta.txt"; // inserisci qui il nome del file
+            string folderName = "porta"; // inserisci qui il nome della cartella
+            string filePath = Path.Combine(Application.StartupPath, folderName, fileName);
+            StreamReader sw = new StreamReader(filePath);
+           string port= sw.ReadLine();
+            sw.Close();
+            port=port.Trim();
+            port = port.ToUpper();
+            string test = port.Substring(0, port.Length - 1);
+            if (test!="COM")
+            {
+                throw new Exception("inserire porta valida");
+            }
+            else
+            {
+                return port;
+            }
         }
     }
 }
