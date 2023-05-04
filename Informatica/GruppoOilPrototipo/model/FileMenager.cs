@@ -89,6 +89,7 @@ namespace GruppoOilPrototipo
         {
             if (misurazioneAttiva== true)
             {
+          
                 wb.Save();
                 wb.Close();
                 app.Quit();

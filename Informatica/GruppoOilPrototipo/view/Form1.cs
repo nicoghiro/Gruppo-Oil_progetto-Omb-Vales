@@ -72,7 +72,8 @@ namespace GruppoOilPrototipo
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }misurazioneAttiva = false;
+                }
+           
             
             
         }
