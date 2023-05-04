@@ -4,7 +4,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace GruppoOilPrototipo
 {
     public class SerialPortReader
@@ -18,7 +18,7 @@ namespace GruppoOilPrototipo
         public SerialPortReader(Form1 form)
         {
             Data = new FileMenager(form);
-            port = new SerialPort("COM5", 9600, Parity.None, 8, StopBits.One);
+            port = new SerialPort(ScegliPorta(), 9600, Parity.None, 8, StopBits.One);
         }
 
 
@@ -51,6 +51,10 @@ namespace GruppoOilPrototipo
                 Data.Input(line);
             }
 
+        }
+        private string ScegliPorta()
+        {
+            
         }
     }
 }

@@ -67,12 +67,13 @@ namespace GruppoOilPrototipo
                 try
                 {
                     ar.fine();
+                
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                }
-            misurazioneAttiva = false;
+                }misurazioneAttiva = false;
+            
             
         }
         public void OttieniMisurazione(string content)
