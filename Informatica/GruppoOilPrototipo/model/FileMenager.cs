@@ -89,7 +89,7 @@ namespace GruppoOilPrototipo
         {
             if (misurazioneAttiva== true)
             {
-                throw new Exception("Dio cane");
+                
                 wb.Save();
                 wb.Close();
                 app.Quit();
