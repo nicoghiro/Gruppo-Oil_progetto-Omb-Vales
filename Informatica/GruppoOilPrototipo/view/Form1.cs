@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GruppoOilPrototipo.view;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,8 +37,10 @@ namespace GruppoOilPrototipo
         {
             if (misurazioneAttiva)
             {
+                
                 ar.fine();
-                MessageBox.Show("ciqo");
+                ar.getFileMenager().app.Quit();
+                misurazioneAttiva = false;
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -53,6 +56,8 @@ namespace GruppoOilPrototipo
                 dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
                 misurazioneAttiva=true;
+                avviaButton.Enabled=false;
+                terminaButton.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -67,6 +72,10 @@ namespace GruppoOilPrototipo
                 try
                 {
                     ar.fine();
+                    ar.getFileMenager().app.Quit();
+                    misurazioneAttiva = false;
+                    avviaButton.Enabled = true;
+                    terminaButton.Enabled = false;
                 
                 }
                 catch (Exception ex)
@@ -103,6 +112,12 @@ namespace GruppoOilPrototipo
         private void button3_Click(object sender, EventArgs e)
         {
             Process.Start($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni");
+        }
+
+        private void portaComToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PortaCom p = new PortaCom();
+            p.Show();
         }
     }
 }

@@ -9,7 +9,6 @@ namespace GruppoOilPrototipo
     public class ArduinoReader
     {
         SerialPortReader Reader;
-        bool state = false;
         //false lettura in pausa , true lettura attiva
         public ArduinoReader(Form1 form)
         {

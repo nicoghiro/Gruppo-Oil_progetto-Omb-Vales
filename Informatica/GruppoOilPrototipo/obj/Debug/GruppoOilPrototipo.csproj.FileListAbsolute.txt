@@ -40,3 +40,4 @@ C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\Grup
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.csproj.CopyComplete
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.exe
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.pdb
+C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.view.PortaCom.resources

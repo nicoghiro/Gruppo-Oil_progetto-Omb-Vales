@@ -11,6 +11,9 @@ namespace GruppoOilPrototipo
     public class SerialPortReader
     {
         private FileMenager data;
+        private Form1 form;
+        // Create the serial port with basic settings 
+        private SerialPort port;
         public FileMenager Data
         {
             get { return data; }
@@ -18,29 +21,24 @@ namespace GruppoOilPrototipo
         }
         public SerialPortReader(Form1 form)
         {
+            this.form = form;
             Data = new FileMenager(form);
             port = new SerialPort(ScegliPorta(), 9600, Parity.None, 8, StopBits.One);
-        }
-
-
-
-        // Create the serial port with basic settings 
-        private SerialPort port;
-        public void start()
-
-        {
-            Data.AvviaMisurazione();
-            //set the event handler
             port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-
-            // Begin communications 
+        }
+        public void start()
+        {
+            
+            Data.AvviaMisurazione();
             port.Open();
 
         }
         public void stop()
         {
+            
             port.Close();
             Data.FineMisurazione();
+
         }
 
         private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
