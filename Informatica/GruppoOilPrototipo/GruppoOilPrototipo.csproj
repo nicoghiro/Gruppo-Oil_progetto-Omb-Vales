@@ -64,12 +64,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\SerialPortReader.cs" />
+    <Compile Include="view\MAXmisurazioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\MAXmisurazioni.Designer.cs">
+      <DependentUpon>MAXmisurazioni.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\PortaCom.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\PortaCom.Designer.cs">
       <DependentUpon>PortaCom.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\SettingsMenager.cs" />
     <EmbeddedResource Include="view\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,6 +89,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\MAXmisurazioni.resx">
+      <DependentUpon>MAXmisurazioni.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\PortaCom.resx">
       <DependentUpon>PortaCom.cs</DependentUpon>
     </EmbeddedResource>

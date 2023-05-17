@@ -17,6 +17,8 @@ namespace GruppoOilPrototipo
         ArduinoReader ar;
         FileMenager fm;
         bool misurazioneAttiva;
+      
+        
         public Form1()
         {
             InitializeComponent();
@@ -118,6 +120,17 @@ namespace GruppoOilPrototipo
         {
             PortaCom p = new PortaCom();
             p.Show();
+        }
+
+        private void mAXMisurazioniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MAXmisurazioni max = new MAXmisurazioni();
+            max.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

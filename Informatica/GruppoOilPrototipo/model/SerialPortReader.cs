@@ -51,25 +51,22 @@ namespace GruppoOilPrototipo
             }
 
         }
-        private string ScegliPorta()
+        public string ScegliPorta()
         {
-            string fileName = "porta.txt"; // inserisci qui il nome del file
-            string folderName = "porta"; // inserisci qui il nome della cartella
+            string fileName = "porta.config"; // inserisci qui il nome del file
+            string folderName = "Impostazioni"; // inserisci qui il nome della cartella
             string filePath = Path.Combine(Application.StartupPath, folderName, fileName);
             StreamReader sw = new StreamReader(filePath);
-           string port= sw.ReadLine();
+            string port = sw.ReadLine();
             sw.Close();
-            port=port.Trim();
-            port = port.ToUpper();
-            string test = port.Substring(0, port.Length - 1);
-            if (test!="COM")
+            if (String.IsNullOrEmpty(port))
             {
-                throw new Exception("inserire porta valida");
+                port = "5";
             }
-            else
-            {
-                return port;
-            }
+            port = port.Trim();
+            port = port.Substring(port.Length - 1);
+
+            return port;
         }
     }
 }

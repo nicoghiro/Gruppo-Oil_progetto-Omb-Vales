@@ -36,6 +36,8 @@
             this.opzioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portaComToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAXMisurazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.misurazioni = new System.Windows.Forms.Label();
+            this.porta = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +45,7 @@
             // avviaButton
             // 
             this.avviaButton.Location = new System.Drawing.Point(185, 417);
-            this.avviaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.avviaButton.Margin = new System.Windows.Forms.Padding(4);
             this.avviaButton.Name = "avviaButton";
             this.avviaButton.Size = new System.Drawing.Size(183, 55);
             this.avviaButton.TabIndex = 0;
@@ -55,7 +57,7 @@
             // 
             this.terminaButton.Enabled = false;
             this.terminaButton.Location = new System.Drawing.Point(688, 417);
-            this.terminaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.terminaButton.Margin = new System.Windows.Forms.Padding(4);
             this.terminaButton.Name = "terminaButton";
             this.terminaButton.Size = new System.Drawing.Size(183, 55);
             this.terminaButton.TabIndex = 1;
@@ -67,7 +69,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(185, 31);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(685, 379);
@@ -77,7 +79,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(879, 31);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(172, 28);
             this.button3.TabIndex = 3;
@@ -92,7 +94,7 @@
             this.opzioniToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -102,7 +104,7 @@
             this.portaComToolStripMenuItem,
             this.mAXMisurazioniToolStripMenuItem});
             this.opzioniToolStripMenuItem.Name = "opzioniToolStripMenuItem";
-            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
             this.opzioniToolStripMenuItem.Text = "Opzioni";
             // 
             // portaComToolStripMenuItem
@@ -117,19 +119,41 @@
             this.mAXMisurazioniToolStripMenuItem.Name = "mAXMisurazioniToolStripMenuItem";
             this.mAXMisurazioniToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.mAXMisurazioniToolStripMenuItem.Text = "MAX. misurazioni";
+            this.mAXMisurazioniToolStripMenuItem.Click += new System.EventHandler(this.mAXMisurazioniToolStripMenuItem_Click);
+            // 
+            // misurazioni
+            // 
+            this.misurazioni.AutoSize = true;
+            this.misurazioni.Location = new System.Drawing.Point(12, 116);
+            this.misurazioni.Name = "misurazioni";
+            this.misurazioni.Size = new System.Drawing.Size(101, 16);
+            this.misurazioni.TabIndex = 5;
+            this.misurazioni.Text = "Max misuazioni:";
+            this.misurazioni.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // porta
+            // 
+            this.porta.AutoSize = true;
+            this.porta.Location = new System.Drawing.Point(15, 153);
+            this.porta.Name = "porta";
+            this.porta.Size = new System.Drawing.Size(45, 16);
+            this.porta.TabIndex = 6;
+            this.porta.Text = "Porta: ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.porta);
+            this.Controls.Add(this.misurazioni);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.terminaButton);
             this.Controls.Add(this.avviaButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -151,6 +175,8 @@
         private System.Windows.Forms.ToolStripMenuItem opzioniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem portaComToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAXMisurazioniToolStripMenuItem;
+        private System.Windows.Forms.Label misurazioni;
+        private System.Windows.Forms.Label porta;
     }
 }
 

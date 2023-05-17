@@ -13,61 +13,28 @@ namespace GruppoOilPrototipo.view
 {
     public partial class PortaCom : Form
     {
+        SettingsMenager st;
         public PortaCom()
         {
             InitializeComponent();
-            textBox1.Text = ScegliPorta();
+            
         }
 
         private void PortaCom_Load(object sender, EventArgs e)
         {
-
+            st=new SettingsMenager();
+            numericUpDown1.Value = (decimal)int.Parse(st.Porta.Substring(st.Porta.Length-1));
         }
-        private string ScegliPorta()
-        {
-            string fileName = "porta.txt"; // inserisci qui il nome del file
-            string folderName = "porta"; // inserisci qui il nome della cartella
-            string filePath = Path.Combine(Application.StartupPath, folderName, fileName);
-            StreamReader sw = new StreamReader(filePath);
-            string port = sw.ReadLine();
-            sw.Close();
-            port = port.Trim();
-            port = port.ToUpper();
-            string test = port.Substring(0, port.Length - 1);
-            if (test != "COM")
-            {
-                throw new Exception("inserire porta valida");
-            }
-            else
-            {
-                return port;
-            }
-        }
-        private string CambiaPorta()
-        {
-            string fileName = "porta.txt"; // inserisci qui il nome del file
-            string folderName = "porta"; // inserisci qui il nome della cartella
-            string filePath = Path.Combine(Application.StartupPath, folderName, fileName);
-            StreamReader sw = new StreamReader(filePath);
-            StreamWriter sr= new StreamWriter(filePath);
-            
-            string port = sw.ReadLine();
-            sw.Close();
-            port = port.Trim();
-            port = port.ToUpper();
-            string test = port.Substring(0, port.Length - 1);
-            if (test != "COM")
-            {
-                throw new Exception("inserire porta valida");
-            }
-            else
-            {
-                return port;
-            }
-        }
+        
+        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            st.SetPorta(numericUpDown1.Value);
         }
     }
 }
