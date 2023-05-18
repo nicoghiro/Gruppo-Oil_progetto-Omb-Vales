@@ -13,7 +13,7 @@ namespace GruppoOilPrototipo.view
 {
     public partial class PortaCom : Form
     {
-        SettingsMenager st;
+        
         public PortaCom()
         {
             InitializeComponent();
@@ -22,8 +22,7 @@ namespace GruppoOilPrototipo.view
 
         private void PortaCom_Load(object sender, EventArgs e)
         {
-            st=new SettingsMenager();
-            numericUpDown1.Value = (decimal)int.Parse(st.Porta.Substring(st.Porta.Length-1));
+            numericUpDown1.Value = (decimal)int.Parse(SettingsMenager.Porta.Substring(SettingsMenager.Porta.Length-1));
         }
         
         
@@ -34,6 +33,7 @@ namespace GruppoOilPrototipo.view
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SettingsMenager st=new SettingsMenager();
             st.SetPorta(numericUpDown1.Value);
         }
     }

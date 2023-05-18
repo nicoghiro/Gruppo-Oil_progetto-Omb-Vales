@@ -33,7 +33,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.opzioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opzioni = new System.Windows.Forms.ToolStripMenuItem();
             this.portaComToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAXMisurazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.misurazioni = new System.Windows.Forms.Label();
@@ -91,21 +91,21 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.opzioniToolStripMenuItem});
+            this.opzioni});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // opzioniToolStripMenuItem
+            // opzioni
             // 
-            this.opzioniToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.opzioni.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.portaComToolStripMenuItem,
             this.mAXMisurazioniToolStripMenuItem});
-            this.opzioniToolStripMenuItem.Name = "opzioniToolStripMenuItem";
-            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
-            this.opzioniToolStripMenuItem.Text = "Opzioni";
+            this.opzioni.Name = "opzioni";
+            this.opzioni.Size = new System.Drawing.Size(75, 24);
+            this.opzioni.Text = "Opzioni";
             // 
             // portaComToolStripMenuItem
             // 
@@ -172,7 +172,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem opzioniToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem opzioni;
         private System.Windows.Forms.ToolStripMenuItem portaComToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAXMisurazioniToolStripMenuItem;
         private System.Windows.Forms.Label misurazioni;

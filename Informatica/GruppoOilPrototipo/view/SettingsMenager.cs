@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -18,18 +16,34 @@ namespace GruppoOilPrototipo.view
     {
         static private string _portaAttuale;
         static private int _maxMisurazioni;
-        static private string FilePathPorta;
-        static private string FilePathMax;
+        private string _filePathPorta;
+        private string _filePathMax;
+        static private Form1 _form;
+        public static Form1 Form
+        {
+            get { return _form; }
+            set
+            {
+                if (value != null)
+                {
+                    _form = value;
+                }
+            }
+        }
+        public string FilePathPorta
+        {
+            get { return _filePathPorta; }
+            private set { _filePathPorta = value; }
+        }
+        public string FilePathMax
+        {
+            get { return _filePathMax; }
+            private set { _filePathMax = value; }
+        }
         public SettingsMenager()
         {
             FilePathMax= Path.Combine(Application.StartupPath, "Impostazioni", "MaxMisurazioni.config");
             FilePathPorta= Path.Combine(Application.StartupPath, "Impostazioni", "Porta.config");
-            StreamReader sr = new StreamReader(FilePathPorta);
-            Porta = sr.ReadLine();
-            sr.Close();
-            sr = new StreamReader(FilePathMax);
-            MaxMisurazioni = int.Parse(sr.ReadLine());
-            sr.Close();
         }
         public static string Porta
         {
@@ -42,7 +56,9 @@ namespace GruppoOilPrototipo.view
         }
         public static int MaxMisurazioni
         {
-            get { return _maxMisurazioni; }
+            get { if(_maxMisurazioni==null)
+                    return 100;
+                    else return _maxMisurazioni; }
             private set {_maxMisurazioni = value; }
         }
         private void Scrivi(string port, string filePath)
@@ -57,19 +73,26 @@ namespace GruppoOilPrototipo.view
         }
         public void SetPorta(decimal nPorta)
         {
-
             if (nPorta < 0)
             {
                 throw new Exception("Porta non valida");
-            }
+            } 
             Scrivi("COM" + nPorta, FilePathPorta);
             Porta = "COM" + nPorta;
+            if (Form != null)
+            {
+                Form.VisualizzaImpostazioni();
+            }
         }
         public void SetMax(int Max)
         {
-            if (Max < 0) throw new Exception("Numero non valido");
+            if (Max <= 0) throw new Exception("Numero non valido");
             Scrivi(Max.ToString(), FilePathMax);
-            MaxMisurazioni = MaxMisurazioni;
+            MaxMisurazioni = Max;
+            if (Form != null)
+            {
+                Form.VisualizzaImpostazioni();
+            }
         }
     }
 }

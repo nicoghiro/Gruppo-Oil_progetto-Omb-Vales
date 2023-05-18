@@ -1,10 +1,12 @@
 ﻿using GruppoOilPrototipo.view;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +35,33 @@ namespace GruppoOilPrototipo
             dataGridView1.Columns.Add("p2", "Potenziometro 2");
             dataGridView1.Columns.Add("om", "Ora misurazione");
             dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
+            SettingsMenager sm = new SettingsMenager();
+            StreamReader sr = new StreamReader(sm.FilePathPorta);
+            string line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                sm.SetPorta((decimal)int.Parse(line.Substring(line.Length - 1)));
+            }
+            else sm.SetPorta(5);
+            sr = new StreamReader(sm.FilePathMax);
+            line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                sm.SetMax(int.Parse(line));
+            }
+            else sm.SetMax(100);
+            SettingsMenager.Form = this;
+            VisualizzaImpostazioni();
         }
+        public void VisualizzaImpostazioni()
+        {
+            porta.Text ="Porta: " + SettingsMenager.Porta;
+            misurazioni.Text = "Max misurazioni: " + SettingsMenager.MaxMisurazioni;
+            
+        }
+
         void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
             if (misurazioneAttiva)
@@ -60,6 +87,7 @@ namespace GruppoOilPrototipo
                 misurazioneAttiva=true;
                 avviaButton.Enabled=false;
                 terminaButton.Enabled = true;
+                opzioni.Enabled=false;
             }
             catch (Exception ex)
             {
@@ -78,6 +106,7 @@ namespace GruppoOilPrototipo
                     misurazioneAttiva = false;
                     avviaButton.Enabled = true;
                     terminaButton.Enabled = false;
+                    opzioni.Enabled = true;
                 
                 }
                 catch (Exception ex)

@@ -12,8 +12,6 @@ namespace GruppoOilPrototipo.view
 {
     public partial class MAXmisurazioni : Form
     {
-
-        private SettingsMenager sm;
        
         public MAXmisurazioni()
         {
@@ -22,8 +20,7 @@ namespace GruppoOilPrototipo.view
 
         private void MAXmisurazioni_Load(object sender, EventArgs e)
         {
-            sm = new SettingsMenager();
-            numericUpDown1.Value = (decimal)sm.MaxMisurazioni;
+            numericUpDown1.Value = (decimal)SettingsMenager.MaxMisurazioni;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -33,6 +30,7 @@ namespace GruppoOilPrototipo.view
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SettingsMenager sm = new SettingsMenager();
             sm.SetMax((int)numericUpDown1.Value);
         }
     }
