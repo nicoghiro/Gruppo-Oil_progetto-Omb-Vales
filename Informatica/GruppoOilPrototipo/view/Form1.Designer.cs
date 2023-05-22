@@ -110,21 +110,21 @@
             // portaComToolStripMenuItem
             // 
             this.portaComToolStripMenuItem.Name = "portaComToolStripMenuItem";
-            this.portaComToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.portaComToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.portaComToolStripMenuItem.Text = "Porta Com";
             this.portaComToolStripMenuItem.Click += new System.EventHandler(this.portaComToolStripMenuItem_Click);
             // 
             // mAXMisurazioniToolStripMenuItem
             // 
             this.mAXMisurazioniToolStripMenuItem.Name = "mAXMisurazioniToolStripMenuItem";
-            this.mAXMisurazioniToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.mAXMisurazioniToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.mAXMisurazioniToolStripMenuItem.Text = "MAX. misurazioni";
             this.mAXMisurazioniToolStripMenuItem.Click += new System.EventHandler(this.mAXMisurazioniToolStripMenuItem_Click);
             // 
             // misurazioni
             // 
             this.misurazioni.AutoSize = true;
-            this.misurazioni.Location = new System.Drawing.Point(12, 116);
+            this.misurazioni.Location = new System.Drawing.Point(15, 119);
             this.misurazioni.Name = "misurazioni";
             this.misurazioni.Size = new System.Drawing.Size(101, 16);
             this.misurazioni.TabIndex = 5;
