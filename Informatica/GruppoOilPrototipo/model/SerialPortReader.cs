@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using GruppoOilPrototipo.view;
+
 namespace GruppoOilPrototipo
 {
     public class SerialPortReader
@@ -23,7 +25,7 @@ namespace GruppoOilPrototipo
         {
             this.form = form;
             Data = new FileMenager(form);
-            port = new SerialPort(ScegliPorta(), 9600, Parity.None, 8, StopBits.One);
+            port = new SerialPort(SettingsMenager.Porta, 9600, Parity.None, 8, StopBits.One);
             port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
         }
         public void start()
@@ -50,23 +52,6 @@ namespace GruppoOilPrototipo
                 Data.Input(line);
             }
 
-        }
-        public string ScegliPorta()
-        {
-            string fileName = "porta.config"; // inserisci qui il nome del file
-            string folderName = "Impostazioni"; // inserisci qui il nome della cartella
-            string filePath = Path.Combine(Application.StartupPath, folderName, fileName);
-            StreamReader sw = new StreamReader(filePath);
-            string port = sw.ReadLine();
-            sw.Close();
-            if (String.IsNullOrEmpty(port))
-            {
-                port = "5";
-            }
-            port = port.Trim();
-            port = port.Substring(port.Length - 1);
-
-            return port;
         }
     }
 }

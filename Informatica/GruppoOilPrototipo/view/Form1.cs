@@ -18,6 +18,7 @@ namespace GruppoOilPrototipo
     {
         ArduinoReader ar;
         FileMenager fm;
+        info p;
         bool misurazioneAttiva;
       
         
@@ -28,7 +29,9 @@ namespace GruppoOilPrototipo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ar=new ArduinoReader(this);
+            p = new info();
+            info.Form = this;
+            ar =new ArduinoReader(this);
             fm = ar.getFileMenager();
             misurazioneAttiva = false;
             dataGridView1.Columns.Add("p1", "Potenziometro 1");
@@ -43,7 +46,8 @@ namespace GruppoOilPrototipo
             {
                 sm.SetPorta((decimal)int.Parse(line.Substring(line.Length - 1)));
             }
-            else sm.SetPorta(5);
+            else
+            sm.SetPorta(5);
             sr = new StreamReader(sm.FilePathMax);
             line = sr.ReadLine();
             sr.Close();
@@ -52,6 +56,22 @@ namespace GruppoOilPrototipo
                 sm.SetMax(int.Parse(line));
             }
             else sm.SetMax(100);
+            sr = new StreamReader(sm.FilePathNome);
+            line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                sm.SetNome(line);
+            }
+            else sm.SetNome("default valve");
+            sr = new StreamReader(sm.FilePathId);
+            line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                sm.SetId(line);
+            }
+            else sm.SetId("default Id");
             SettingsMenager.Form = this;
             VisualizzaImpostazioni();
         }
@@ -59,6 +79,9 @@ namespace GruppoOilPrototipo
         {
             porta.Text ="Porta: " + SettingsMenager.Porta;
             misurazioni.Text = "Max misurazioni: " + SettingsMenager.MaxMisurazioni;
+            Nome.Text = "Nome: " + SettingsMenager.Nome;
+            Id.Text="ID: "+ SettingsMenager.Id;
+            
             
         }
 
@@ -79,15 +102,8 @@ namespace GruppoOilPrototipo
                 dataGridView1.Rows.Clear();
             }
             try
-            {
-                ar.inzio();
-                dataGridView1.Columns["p1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
-                misurazioneAttiva=true;
-                avviaButton.Enabled=false;
-                terminaButton.Enabled = true;
-                opzioni.Enabled=false;
+            { 
+                p.Show();
             }
             catch (Exception ex)
             {
@@ -95,6 +111,18 @@ namespace GruppoOilPrototipo
             }
             
 
+        }
+        public void Inizio()
+        {
+            VisualizzaImpostazioni();
+            ar.inzio();
+            dataGridView1.Columns["p1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            misurazioneAttiva = true;
+            avviaButton.Enabled = false;
+            terminaButton.Enabled = true;
+            opzioni.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -158,6 +186,11 @@ namespace GruppoOilPrototipo
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Id_Click(object sender, EventArgs e)
         {
 
         }
