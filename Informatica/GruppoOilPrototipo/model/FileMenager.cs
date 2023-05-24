@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using System.IO;
+using System.Windows.Forms;
 
 namespace GruppoOilPrototipo
 {
@@ -39,7 +41,8 @@ namespace GruppoOilPrototipo
             tmp = DateTime.Now.ToString().Split(' ')[1].Split(':');
             dataFile += $"{tmp[0]}.{tmp[1]}.{tmp[2]}";
             _nomeFile = "misurazioni" + dataFile + ".xlsx";
-            _nomeFoglio = "Foglio1";
+            _nomeFoglio = "Misurazioni";
+
         }
         public void AvviaMisurazione()
         {
@@ -47,14 +50,13 @@ namespace GruppoOilPrototipo
             {
                     nuovoFile();
                     app = new Excel.Application();
-                    NumeroMisurazioni = 1;
+                    NumeroMisurazioni = 2;
                     app.DisplayAlerts = false;
-                    app.SheetsInNewWorkbook = 1;
-                    object missing = System.Reflection.Missing.Value;
+                    //object missing = System.Reflection.Missing.Value;
                     wbs = app.Workbooks;
-                    wb = wbs.Add(missing);
+                    
+                    wb = wbs.Add(Path.Combine(System.Windows.Forms.Application.StartupPath, "Misurazioni", "template.xlsx"));
                     ws = (Excel.Worksheet)(wb.Worksheets[1]);
-                    ws.Name = _nomeFoglio;
                     misurazioneAttiva = true;
             }
             else throw new Exception("Misurazione già in corso");
@@ -84,7 +86,6 @@ namespace GruppoOilPrototipo
                 }
                 catch (Exception ex)
                 {
-                    ws.Cells[NumeroMisurazioni, "A"] = "Errore nella misurazione";
                 }
                 wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{_nomeFile}");
             }
