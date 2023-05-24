@@ -38,6 +38,8 @@
             this.mAXMisurazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.misurazioni = new System.Windows.Forms.Label();
             this.porta = new System.Windows.Forms.Label();
+            this.id = new System.Windows.Forms.Label();
+            this.nome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +96,7 @@
             this.opzioni});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -104,7 +106,7 @@
             this.portaComToolStripMenuItem,
             this.mAXMisurazioniToolStripMenuItem});
             this.opzioni.Name = "opzioni";
-            this.opzioni.Size = new System.Drawing.Size(75, 24);
+            this.opzioni.Size = new System.Drawing.Size(75, 26);
             this.opzioni.Text = "Opzioni";
             // 
             // portaComToolStripMenuItem
@@ -140,11 +142,31 @@
             this.porta.TabIndex = 6;
             this.porta.Text = "Porta: ";
             // 
+            // id
+            // 
+            this.id.AutoSize = true;
+            this.id.Location = new System.Drawing.Point(18, 184);
+            this.id.Name = "id";
+            this.id.Size = new System.Drawing.Size(26, 16);
+            this.id.TabIndex = 7;
+            this.id.Text = "ID: ";
+            // 
+            // nome
+            // 
+            this.nome.AutoSize = true;
+            this.nome.Location = new System.Drawing.Point(18, 216);
+            this.nome.Name = "nome";
+            this.nome.Size = new System.Drawing.Size(47, 16);
+            this.nome.TabIndex = 8;
+            this.nome.Text = "Nome:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.nome);
+            this.Controls.Add(this.id);
             this.Controls.Add(this.porta);
             this.Controls.Add(this.misurazioni);
             this.Controls.Add(this.button3);
@@ -177,6 +199,8 @@
         private System.Windows.Forms.ToolStripMenuItem mAXMisurazioniToolStripMenuItem;
         private System.Windows.Forms.Label misurazioni;
         private System.Windows.Forms.Label porta;
+        private System.Windows.Forms.Label id;
+        private System.Windows.Forms.Label nome;
     }
 }
 

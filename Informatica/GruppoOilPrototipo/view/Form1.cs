@@ -1,4 +1,5 @@
-﻿using GruppoOilPrototipo.view;
+﻿using GruppoOilPrototipo.model;
+using GruppoOilPrototipo.view;
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
@@ -36,22 +37,7 @@ namespace GruppoOilPrototipo
             dataGridView1.Columns.Add("om", "Ora misurazione");
             dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             SettingsMenager sm = new SettingsMenager();
-            StreamReader sr = new StreamReader(sm.FilePathPorta);
-            string line = sr.ReadLine();
-            sr.Close();
-            if (line != null)
-            {
-                sm.SetPorta((decimal)int.Parse(line.Substring(line.Length - 1)));
-            }
-            else sm.SetPorta(5);
-            sr = new StreamReader(sm.FilePathMax);
-            line = sr.ReadLine();
-            sr.Close();
-            if (line != null)
-            {
-                sm.SetMax(int.Parse(line));
-            }
-            else sm.SetMax(100);
+            
             SettingsMenager.Form = this;
             VisualizzaImpostazioni();
         }
@@ -59,14 +45,14 @@ namespace GruppoOilPrototipo
         {
             porta.Text ="Porta: " + SettingsMenager.Porta;
             misurazioni.Text = "Max misurazioni: " + SettingsMenager.MaxMisurazioni;
-            
+            id.Text = "ID: " + SettingsMenager.IDValvola;
+            nome.Text = "Nome: " + SettingsMenager.NomeValvola;
         }
 
         void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
             if (misurazioneAttiva)
             {
-                
                 ar.fine();
                 ar.getFileMenager().app.Quit();
                 misurazioneAttiva = false;
@@ -80,14 +66,10 @@ namespace GruppoOilPrototipo
             }
             try
             {
-                ar.inzio();
-                dataGridView1.Columns["p1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; 
-                misurazioneAttiva=true;
-                avviaButton.Enabled=false;
-                terminaButton.Enabled = true;
-                opzioni.Enabled=false;
+                this.Hide();
+                InformazioniValvola inf = new InformazioniValvola(this);
+                inf.ShowDialog();
+                Start();
             }
             catch (Exception ex)
             {
@@ -95,6 +77,17 @@ namespace GruppoOilPrototipo
             }
             
 
+        }
+        public void Start()
+        {
+            ar.inzio();
+            dataGridView1.Columns["p1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            misurazioneAttiva = true;
+            avviaButton.Enabled = false;
+            terminaButton.Enabled = true;
+            opzioni.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)

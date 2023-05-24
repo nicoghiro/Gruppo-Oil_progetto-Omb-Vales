@@ -19,6 +19,30 @@ namespace GruppoOilPrototipo.view
         private string _filePathPorta;
         private string _filePathMax;
         static private Form1 _form;
+        private string _filePathInfo;
+        private static string _id;
+        private static string _nome;
+
+        public static string IDValvola
+        {
+            get { if (_id == null) return "0";
+                        return _id; }
+            private set { _id = value; }
+        }
+        public static string NomeValvola
+        {
+            get {
+                if (_nome == null) return "N/A";
+                
+                    return _nome;
+            }
+            private set { _nome = value; }
+        }
+        public string FilePathInfo
+        {
+            get { return _filePathInfo; }
+            private set { _filePathInfo = value; }
+        }
         public static Form1 Form
         {
             get { return _form; }
@@ -44,6 +68,7 @@ namespace GruppoOilPrototipo.view
         {
             FilePathMax= Path.Combine(Application.StartupPath, "Impostazioni", "MaxMisurazioni.config");
             FilePathPorta= Path.Combine(Application.StartupPath, "Impostazioni", "Porta.config");
+            FilePathInfo = Path.Combine(Application.StartupPath, "Impostazioni", "Info.config");
         }
         public static string Porta
         {
@@ -67,7 +92,6 @@ namespace GruppoOilPrototipo.view
             File.Delete(filePath);
             StreamWriter sw = new StreamWriter(filePath);
             port = port.Trim();
-            port = port.ToUpper();
             sw.Write(port);
             sw.Close();
         }
@@ -94,5 +118,49 @@ namespace GruppoOilPrototipo.view
                 Form.VisualizzaImpostazioni();
             }
         }
+        public void LoadSettings()
+        {
+            StreamReader sr = new StreamReader(this.FilePathPorta);
+            string line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                SetPorta((decimal)int.Parse(line.Substring(line.Length - 1)));
+            }
+            else this.SetPorta(5);
+            sr = new StreamReader(this.FilePathMax);
+            line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                SetMax(int.Parse(line));
+            }
+            else SetMax(100);
+            sr = new StreamReader(FilePathInfo);
+            line = sr.ReadLine();
+            sr.Close();
+            if (line != null)
+            {
+                try
+                {
+                    SetInfo(line.Split(';')[0], line.Split(';')[1]);
+                }
+                catch
+                {
+                    SetInfo("0", "N/A");
+                }
+            }
+        }
+        public void SetInfo(string id, string nome)
+        {
+            if (String.IsNullOrEmpty(id) && String.IsNullOrEmpty(nome)) throw new Exception("Nome e/o ID non validi");
+            Scrivi(id + ";" +nome + ";" , FilePathInfo);
+            IDValvola = id;
+            NomeValvola = nome;
+            if(Form!= null)
+            {
+                Form.VisualizzaImpostazioni();
+            }
+         }
     }
 }
