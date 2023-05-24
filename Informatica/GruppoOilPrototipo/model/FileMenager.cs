@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-using GruppoOilPrototipo.view;
 
 namespace GruppoOilPrototipo
 {
@@ -40,7 +39,7 @@ namespace GruppoOilPrototipo
             tmp = DateTime.Now.ToString().Split(' ')[1].Split(':');
             dataFile += $"{tmp[0]}.{tmp[1]}.{tmp[2]}";
             _nomeFile = "misurazioni" + dataFile + ".xlsx";
-            _nomeFoglio = "Misurazioni";
+            _nomeFoglio = "Foglio1";
         }
         public void AvviaMisurazione()
         {
@@ -48,12 +47,14 @@ namespace GruppoOilPrototipo
             {
                     nuovoFile();
                     app = new Excel.Application();
-                    NumeroMisurazioni = 2;
+                    NumeroMisurazioni = 1;
                     app.DisplayAlerts = false;
+                    app.SheetsInNewWorkbook = 1;
+                    object missing = System.Reflection.Missing.Value;
                     wbs = app.Workbooks;
-                    wb = wbs.Open("template.xlsx");
+                    wb = wbs.Add(missing);
                     ws = (Excel.Worksheet)(wb.Worksheets[1]);
-                    //ws.Name = _nomeFoglio;
+                    ws.Name = _nomeFoglio;
                     misurazioneAttiva = true;
             }
             else throw new Exception("Misurazione già in corso");
@@ -64,10 +65,6 @@ namespace GruppoOilPrototipo
             {
                 scriviAppend(_nomeFile, line);
                 NumeroMisurazioni++;
-                if(NumeroMisurazioni - 2 == SettingsMenager.MaxMisurazioni)
-                {
-                    FineMisurazione();
-                }
             }
             else { throw new Exception("Valore nullo"); }
         }

@@ -38,8 +38,6 @@
             this.mAXMisurazioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.misurazioni = new System.Windows.Forms.Label();
             this.porta = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.Label();
-            this.Nome = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -142,32 +140,11 @@
             this.porta.TabIndex = 6;
             this.porta.Text = "Porta: ";
             // 
-            // Id
-            // 
-            this.Id.AutoSize = true;
-            this.Id.Location = new System.Drawing.Point(15, 222);
-            this.Id.Name = "Id";
-            this.Id.Size = new System.Drawing.Size(23, 16);
-            this.Id.TabIndex = 8;
-            this.Id.Text = "ID:";
-            this.Id.Click += new System.EventHandler(this.Id_Click);
-            // 
-            // Nome
-            // 
-            this.Nome.AutoSize = true;
-            this.Nome.Location = new System.Drawing.Point(15, 188);
-            this.Nome.Name = "Nome";
-            this.Nome.Size = new System.Drawing.Size(47, 16);
-            this.Nome.TabIndex = 7;
-            this.Nome.Text = "Nome:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.Id);
-            this.Controls.Add(this.Nome);
             this.Controls.Add(this.porta);
             this.Controls.Add(this.misurazioni);
             this.Controls.Add(this.button3);
@@ -200,8 +177,6 @@
         private System.Windows.Forms.ToolStripMenuItem mAXMisurazioniToolStripMenuItem;
         private System.Windows.Forms.Label misurazioni;
         private System.Windows.Forms.Label porta;
-        private System.Windows.Forms.Label Id;
-        private System.Windows.Forms.Label Nome;
     }
 }
 

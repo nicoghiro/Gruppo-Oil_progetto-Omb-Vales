@@ -42,4 +42,3 @@ C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\Grup
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.pdb
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.view.PortaCom.resources
 C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.view.MAXmisurazioni.resources
-C:\Users\nicolas\OneDrive\Desktop\Gruppo-Oil_progetto-Omb-Vales\Informatica\GruppoOilPrototipo\obj\Debug\GruppoOilPrototipo.view.info.resources
