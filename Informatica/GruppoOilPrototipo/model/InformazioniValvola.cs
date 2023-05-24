@@ -42,7 +42,8 @@ namespace GruppoOilPrototipo.model
 
         private void InformazioniValvola_Load(object sender, EventArgs e)
         {
-
+            nomeText.Text= SettingsMenager.NomeValvola;
+            idText.Text = SettingsMenager.IDValvola;
         }
         
         private void InformazioniValvola_FormClosing()
