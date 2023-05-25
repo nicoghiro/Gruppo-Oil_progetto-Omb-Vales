@@ -69,6 +69,7 @@ namespace GruppoOilPrototipo.view
             FilePathMax= Path.Combine(Application.StartupPath, "Impostazioni", "MaxMisurazioni.config");
             FilePathPorta= Path.Combine(Application.StartupPath, "Impostazioni", "Porta.config");
             FilePathInfo = Path.Combine(Application.StartupPath, "Impostazioni", "Info.config");
+            LoadSettings();
         }
         public static string Porta
         {
