@@ -48,16 +48,6 @@ namespace GruppoOilPrototipo
             id.Text = "ID: " + SettingsMenager.IDValvola;
             nome.Text = "Nome: " + SettingsMenager.NomeValvola;
         }
-
-        void Form1_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            if (misurazioneAttiva)
-            {
-                ar.fine();
-                ar.getFileMenager().app.Quit();
-                misurazioneAttiva = false;
-            }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (!misurazioneAttiva)
@@ -66,8 +56,8 @@ namespace GruppoOilPrototipo
             }
             try
             {
-                this.Hide();
                 InformazioniValvola inf = new InformazioniValvola(this);
+                this.Hide();
                 inf.ShowDialog();
                 Start();
             }
@@ -94,13 +84,7 @@ namespace GruppoOilPrototipo
         {
                 try
                 {
-                    ar.fine();
-                    ar.getFileMenager().app.Quit();
-                    misurazioneAttiva = false;
-                    avviaButton.Enabled = true;
-                    terminaButton.Enabled = false;
-                    opzioni.Enabled = true;
-                
+                    Stop();
                 }
                 catch (Exception ex)
                 {
@@ -109,6 +93,15 @@ namespace GruppoOilPrototipo
            
             
             
+        }
+        public void Stop()
+        {
+            ar.fine();
+            
+            misurazioneAttiva = false;
+            avviaButton.Enabled = true;
+            terminaButton.Enabled = false;
+            opzioni.Enabled = true;
         }
         public void OttieniMisurazione(string content)
         {

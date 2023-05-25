@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using GruppoOilPrototipo.view;
+using System.Threading;
+
 
 namespace GruppoOilPrototipo
 {
@@ -16,6 +18,7 @@ namespace GruppoOilPrototipo
         private Form1 form;
         // Create the serial port with basic settings 
         private SerialPort port;
+        private System.Threading.Thread CloseDown;
         public FileMenager Data
         {
             get { return data; }
@@ -30,18 +33,48 @@ namespace GruppoOilPrototipo
         }
         public void start()
         {
-            
             Data.AvviaMisurazione();
             port.Open();
-
         }
+        /*private void CloseSerialOnExit()
+        {
+
+            try
+            {
+                port.DtrEnable = false;
+                port.RtsEnable = false;
+                port.DiscardInBuffer();
+                port.DiscardOutBuffer();
+                port.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }*/
         public void stop()
         {
-            
-            port.Close();
-            Data.FineMisurazione();
-
+            CloseDown = new System.Threading.Thread(new System.Threading.ThreadStart(CloseSerialOnExit));
+            CloseDown.Start();
+            MessageBox.Show("Misurazione terminata");
+            Data.FineMisurazione();  
         }
+        private void CloseSerialOnExit()
+        {
+            try
+            {
+                port.Close(); //close the serial port
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message); //catch any serial port closing error messages
+            }
+            
+        }
+
+
+
 
         private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {

@@ -8,6 +8,7 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Windows.Forms;
+using GruppoOilPrototipo.view;
 
 namespace GruppoOilPrototipo
 {
@@ -46,8 +47,8 @@ namespace GruppoOilPrototipo
         }
         public void AvviaMisurazione()
         {
-            if (!misurazioneAttiva)
-            {
+           if (!misurazioneAttiva)
+           {
                     nuovoFile();
                     app = new Excel.Application();
                     NumeroMisurazioni = 2;
@@ -65,8 +66,10 @@ namespace GruppoOilPrototipo
         {
             if (line != null)
             {
+                if (line == "f") form.Stop();
                 scriviAppend(_nomeFile, line);
                 NumeroMisurazioni++;
+                if (NumeroMisurazioni == SettingsMenager.MaxMisurazioni + 3 && SettingsMenager.MaxMisurazioni!=0) form.Stop();
             }
             else { throw new Exception("Valore nullo"); }
         }
@@ -87,27 +90,23 @@ namespace GruppoOilPrototipo
                 catch (Exception ex)
                 {
                 }
-                wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{_nomeFile}");
             }
             else throw new Exception("Misurazione non attiva");
         }
         public void FineMisurazione()
         {
-           // if (misurazioneAttiva== true)
+            // if (misurazioneAttiva== true)
             //{
-                wb.Save();
+            Worksheet wsInfo = (Worksheet)wb.Worksheets[3];
+            wsInfo.Cells[2, "A"] = SettingsMenager.NomeValvola;
+            wsInfo.Cells[2, "B"] = SettingsMenager.IDValvola;
+            wsInfo.Cells[2, "C"] = NumeroMisurazioni - 3;
+
+            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{_nomeFile}");
                 wb.Close();
                 wbs.Close();
-                app.Application.Quit();
                 app.Quit();
-            Marshal.ReleaseComObject(wb);
-            Marshal.ReleaseComObject(wbs);
-            Marshal.ReleaseComObject(app);
-            misurazioneAttiva = false;
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
+                misurazioneAttiva = false;
             //} else
             //{
                 //throw new Exception("Misurazione non avviata");

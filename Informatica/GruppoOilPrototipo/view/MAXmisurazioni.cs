@@ -32,6 +32,8 @@ namespace GruppoOilPrototipo.view
         {
             SettingsMenager sm = new SettingsMenager();
             sm.SetMax((int)numericUpDown1.Value);
+            MessageBox.Show("Massimo impostato");
+            this.Close();
         }
     }
 }

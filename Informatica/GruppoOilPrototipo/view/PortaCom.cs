@@ -35,6 +35,8 @@ namespace GruppoOilPrototipo.view
         {
             SettingsMenager st=new SettingsMenager();
             st.SetPorta(numericUpDown1.Value);
+            MessageBox.Show("Porta impostata");
+            this.Close();
         }
     }
 }

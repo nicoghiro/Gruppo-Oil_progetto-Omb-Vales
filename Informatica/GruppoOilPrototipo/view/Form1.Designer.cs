@@ -96,7 +96,7 @@
             this.opzioni});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1065, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -106,7 +106,7 @@
             this.portaComToolStripMenuItem,
             this.mAXMisurazioniToolStripMenuItem});
             this.opzioni.Name = "opzioni";
-            this.opzioni.Size = new System.Drawing.Size(75, 26);
+            this.opzioni.Size = new System.Drawing.Size(75, 24);
             this.opzioni.Text = "Opzioni";
             // 
             // portaComToolStripMenuItem
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(1065, 499);
             this.Controls.Add(this.nome);
             this.Controls.Add(this.id);
             this.Controls.Add(this.porta);
