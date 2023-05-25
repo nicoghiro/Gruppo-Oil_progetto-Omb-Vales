@@ -33,6 +33,7 @@ namespace GruppoOilPrototipo
         }
         public void start()
         {
+            port.PortName = SettingsMenager.Porta;
             Data.AvviaMisurazione();
             port.Open();
         }
