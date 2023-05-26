@@ -33,8 +33,8 @@ namespace GruppoOilPrototipo
             fm = ar.getFileMenager();
             misurazioneAttiva = false;
             terminaButton.Enabled = false;
-            dataGridView1.Columns.Add("p1", "Potenziometro 1");
-            dataGridView1.Columns.Add("p2", "Potenziometro 2");
+            dataGridView1.Columns.Add("p1", "Angolo");
+            dataGridView1.Columns.Add("p2", "Coppia");
             dataGridView1.Columns.Add("om", "Ora misurazione");
             dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             SettingsMenager sm = new SettingsMenager();
