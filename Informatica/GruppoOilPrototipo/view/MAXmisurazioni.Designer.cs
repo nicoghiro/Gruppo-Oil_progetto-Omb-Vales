@@ -36,12 +36,13 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Azure;
             this.button1.Location = new System.Drawing.Point(176, 159);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
             this.button1.Text = "Modifica";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
@@ -56,6 +57,7 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.BackColor = System.Drawing.Color.Azure;
             this.numericUpDown1.Location = new System.Drawing.Point(149, 131);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             400,
@@ -76,6 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(432, 301);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button1);

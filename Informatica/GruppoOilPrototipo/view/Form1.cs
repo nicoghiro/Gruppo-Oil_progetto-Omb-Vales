@@ -32,6 +32,7 @@ namespace GruppoOilPrototipo
             ar=new ArduinoReader(this);
             fm = ar.getFileMenager();
             misurazioneAttiva = false;
+            terminaButton.Enabled = false;
             dataGridView1.Columns.Add("p1", "Potenziometro 1");
             dataGridView1.Columns.Add("p2", "Potenziometro 2");
             dataGridView1.Columns.Add("om", "Ora misurazione");
@@ -57,7 +58,6 @@ namespace GruppoOilPrototipo
             try
             {
                 InformazioniValvola inf = new InformazioniValvola(this);
-                this.Hide();
                 inf.ShowDialog();
                 Start();
             }
@@ -82,15 +82,7 @@ namespace GruppoOilPrototipo
 
         private void button2_Click(object sender, EventArgs e)
         {
-                try
-                {
-                    Stop();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-           
+               
             
             
         }
@@ -145,6 +137,19 @@ namespace GruppoOilPrototipo
 
         private void label1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void terminaButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Stop();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }

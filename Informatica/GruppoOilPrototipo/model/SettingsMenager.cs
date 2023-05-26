@@ -121,7 +121,7 @@ namespace GruppoOilPrototipo.view
         }
         public void LoadSettings()
         {
-            StreamReader sr = new StreamReader(this.FilePathPorta);
+            StreamReader sr = new StreamReader(FilePathPorta);
             string line = sr.ReadLine();
             sr.Close();
             if (line != null)

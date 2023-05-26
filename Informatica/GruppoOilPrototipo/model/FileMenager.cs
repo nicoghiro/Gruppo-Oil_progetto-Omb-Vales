@@ -23,10 +23,18 @@ namespace GruppoOilPrototipo
         private Worksheet ws;
         private bool misurazioneAttiva;
         private Form1 form;
+        private string _dataFile;
+        private int misurazioniErrate;
         public int NumeroMisurazioni
         {
             get { return _numeroMisurazioni; }
             private set { _numeroMisurazioni = value; }
+
+        }
+        public string DataFile
+        {
+            get { return _dataFile; }
+            private set { _dataFile = value; }
         }
         public FileMenager(Form1 form)
         {
@@ -36,12 +44,12 @@ namespace GruppoOilPrototipo
         }
         private void nuovoFile()
         {
-            string dataFile = "";
+            DataFile = "";
             string[] tmp = DateTime.Now.ToString().Split(' ')[0].Split('/');
-            dataFile = $"{tmp[0]}_{tmp[1]}_{tmp[2]}_";
+            DataFile = $"{tmp[0]}_{tmp[1]}_{tmp[2]}_";
             tmp = DateTime.Now.ToString().Split(' ')[1].Split(':');
-            dataFile += $"{tmp[0]}.{tmp[1]}.{tmp[2]}";
-            _nomeFile = "misurazioni" + dataFile + ".xlsx";
+            DataFile += $"{tmp[0]}.{tmp[1]}.{tmp[2]}";
+            _nomeFile = "misurazioni" + DataFile + ".xlsx";
             _nomeFoglio = "Misurazioni";
 
         }
@@ -49,6 +57,7 @@ namespace GruppoOilPrototipo
         {
            if (!misurazioneAttiva)
            {
+                    misurazioniErrate = 0;
                     nuovoFile();
                     app = new Excel.Application();
                     NumeroMisurazioni = 2;
@@ -89,6 +98,8 @@ namespace GruppoOilPrototipo
                 }
                 catch (Exception ex)
                 {
+                    NumeroMisurazioni--;
+                    misurazioniErrate++;
                 }
             }
             else throw new Exception("Misurazione non attiva");
@@ -101,8 +112,9 @@ namespace GruppoOilPrototipo
             wsInfo.Cells[2, "A"] = SettingsMenager.NomeValvola;
             wsInfo.Cells[2, "B"] = SettingsMenager.IDValvola;
             wsInfo.Cells[2, "C"] = NumeroMisurazioni - 3;
+            wsInfo.Cells[2, "D"] = misurazioniErrate;
 
-            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{_nomeFile}");
+            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{SettingsMenager.IDValvola}-{SettingsMenager.NomeValvola}-{DataFile}.xlsx");
                 wb.Close();
                 wbs.Close();
                 app.Quit();

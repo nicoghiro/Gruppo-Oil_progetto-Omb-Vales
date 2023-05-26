@@ -55,10 +55,10 @@
   <ItemGroup>
     <Compile Include="model\ArduinoReader.cs" />
     <Compile Include="model\FileMenager.cs" />
-    <Compile Include="model\InformazioniValvola.cs">
+    <Compile Include="view\InformazioniValvola.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="model\InformazioniValvola.Designer.cs">
+    <Compile Include="view\InformazioniValvola.Designer.cs">
       <DependentUpon>InformazioniValvola.cs</DependentUpon>
     </Compile>
     <Compile Include="view\Form1.cs">
@@ -82,8 +82,8 @@
     <Compile Include="view\PortaCom.Designer.cs">
       <DependentUpon>PortaCom.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\SettingsMenager.cs" />
-    <EmbeddedResource Include="model\InformazioniValvola.resx">
+    <Compile Include="model\SettingsMenager.cs" />
+    <EmbeddedResource Include="view\InformazioniValvola.resx">
       <DependentUpon>InformazioniValvola.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Form1.resx">
