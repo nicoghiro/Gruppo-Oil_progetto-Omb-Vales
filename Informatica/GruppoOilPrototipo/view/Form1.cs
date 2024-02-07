@@ -63,6 +63,7 @@ namespace GruppoOilPrototipo
             }
             catch (Exception ex)
             {
+                fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
             }
             
@@ -109,6 +110,7 @@ namespace GruppoOilPrototipo
                 }
             } catch(Exception ex)
             {
+                fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
             }
         }
@@ -148,6 +150,7 @@ namespace GruppoOilPrototipo
             }
             catch (Exception ex)
             {
+                fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
             }
 

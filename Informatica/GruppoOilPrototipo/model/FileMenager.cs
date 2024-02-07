@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Windows.Forms;
 using GruppoOilPrototipo.view;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace GruppoOilPrototipo
 {
@@ -17,10 +17,7 @@ namespace GruppoOilPrototipo
         private string _nomeFile;
         private int _numeroMisurazioni;
         private string _nomeFoglio;
-        public Excel.Application app;
-        private Workbooks wbs;
-        private Workbook wb;
-        private Worksheet ws;
+        XLWorkbook wb;
         private bool misurazioneAttiva;
         private Form1 form;
         private string _dataFile;
@@ -41,6 +38,7 @@ namespace GruppoOilPrototipo
             
             this.form = form;
             
+
         }
         private void nuovoFile()
         {
@@ -57,16 +55,10 @@ namespace GruppoOilPrototipo
         {
            if (!misurazioneAttiva)
            {
-                    misurazioniErrate = 0;
+                wb = new XLWorkbook("./Misurazioni/template.xlsx");
+                misurazioniErrate = 0;
                     nuovoFile();
-                    app = new Excel.Application();
                     NumeroMisurazioni = 2;
-                    app.DisplayAlerts = false;
-                    //object missing = System.Reflection.Missing.Value;
-                    wbs = app.Workbooks;
-                    
-                    wb = wbs.Add(Path.Combine(System.Windows.Forms.Application.StartupPath, "Misurazioni", "template.xlsx"));
-                    ws = (Excel.Worksheet)(wb.Worksheets[1]);
                     misurazioneAttiva = true;
             }
             else throw new Exception("Misurazione già in corso");
@@ -84,15 +76,14 @@ namespace GruppoOilPrototipo
         }
         private void scriviAppend(string filename, string content)
         {
-
-            if (app != null)
-            {
-                try
+            
+            var ws = wb.Worksheet("Misurazioni");
+            try
                 {
                     string orarioMisurazione = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "," + DateTime.Now.Millisecond.ToString();
-                    ws.Cells[NumeroMisurazioni, "A"] = content.Split(';')[0];
-                    ws.Cells[NumeroMisurazioni, "B"] = content.Split(';')[1];
-                    ws.Cells[NumeroMisurazioni, "C"] = orarioMisurazione;
+                    ws.Cell("A" + NumeroMisurazioni).Value = content.Split(';')[0];
+                    ws.Cell("B" + NumeroMisurazioni).Value = content.Split(';')[1];
+                    ws.Cell("C" + NumeroMisurazioni).Value = orarioMisurazione;
                     content+= ";" + orarioMisurazione + ";";
                     form.OttieniMisurazione(content);
                 }
@@ -101,29 +92,27 @@ namespace GruppoOilPrototipo
                     NumeroMisurazioni--;
                     misurazioniErrate++;
                 }
-            }
-            else throw new Exception("Misurazione non attiva");
         }
         public void FineMisurazione()
         {
             // if (misurazioneAttiva== true)
             //{
-            Worksheet wsInfo = (Worksheet)wb.Worksheets[3];
-            wsInfo.Cells[2, "A"] = SettingsMenager.NomeValvola;
-            wsInfo.Cells[2, "B"] = SettingsMenager.IDValvola;
-            wsInfo.Cells[2, "C"] = NumeroMisurazioni - 3;
-            wsInfo.Cells[2, "D"] = misurazioniErrate;
-
+            var wsInfo = wb.Worksheet("Info");
+            wsInfo.Cell("A2").Value = SettingsMenager.NomeValvola;
+            wsInfo.Cell("B2").Value = SettingsMenager.IDValvola;
+            wsInfo.Cell("C2").Value = NumeroMisurazioni - 3;
+            wsInfo.Cell("D2").Value = misurazioniErrate;
             wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{SettingsMenager.IDValvola}-{SettingsMenager.NomeValvola}-{DataFile}.xlsx");
-                wb.Close();
-                wbs.Close();
-                app.Quit();
-                misurazioneAttiva = false;
+            StopMisurazione();
             //} else
             //{
                 //throw new Exception("Misurazione non avviata");
           //  }
             
+        }
+        public void StopMisurazione()
+        {
+            misurazioneAttiva = false;
         }
     }
 }
