@@ -55,8 +55,7 @@ namespace GruppoOilPrototipo
         {
            if (!misurazioneAttiva)
            {
-                MessageBox.Show(AppDomain.CurrentDomain.BaseDirectory);
-                wb = new XLWorkbook($@"./Misurazioni/template.xlsx");
+                wb = new XLWorkbook($@"{AppDomain.CurrentDomain.BaseDirectory}/Misurazioni/template.xlsx");
                 misurazioniErrate = 0;
                     //nuovoFile();
                     NumeroMisurazioni = 2;
