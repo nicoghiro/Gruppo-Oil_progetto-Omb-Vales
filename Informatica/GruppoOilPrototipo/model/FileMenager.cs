@@ -40,7 +40,7 @@ namespace GruppoOilPrototipo
             
 
         }
-        private void nuovoFile()
+        /*private void nuovoFile()
         {
             DataFile = "";
             string[] tmp = DateTime.Now.ToString().Split(' ')[0].Split('/');
@@ -50,15 +50,14 @@ namespace GruppoOilPrototipo
             _nomeFile = "misurazioni" + DataFile + ".xlsx";
             _nomeFoglio = "Misurazioni";
 
-        }
+        }*/
         public void AvviaMisurazione()
         {
            if (!misurazioneAttiva)
            {
                 wb = new XLWorkbook($"./Misurazioni/template.xlsx");
-                MessageBox.Show("file trovato");
                 misurazioniErrate = 0;
-                    nuovoFile();
+                    //nuovoFile();
                     NumeroMisurazioni = 2;
                     misurazioneAttiva = true;
             }
