@@ -35,8 +35,8 @@ namespace GruppoOilPrototipo
         {
             port.PortName = SettingsMenager.Porta;
             Data.AvviaMisurazione();
-            MessageBox.Show("Avvio riuscito");
             port.Open();
+            MessageBox.Show("Avvio riuscito");
         }
         /*private void CloseSerialOnExit()
         {

@@ -70,7 +70,6 @@ namespace GruppoOilPrototipo.view
             FilePathInfo = $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/Info.config";
             FilePathPorta = $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/Porta.config";
             LoadSettings();
-            MessageBox.Show("Spacca");
         }
         public static string Porta
         {
