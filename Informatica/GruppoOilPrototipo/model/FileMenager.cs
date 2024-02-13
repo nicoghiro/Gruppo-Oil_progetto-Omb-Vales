@@ -40,7 +40,7 @@ namespace GruppoOilPrototipo
             
 
         }
-        /*private void nuovoFile()
+        private void nuovoFile()
         {
             DataFile = "";
             string[] tmp = DateTime.Now.ToString().Split(' ')[0].Split('/');
@@ -50,18 +50,21 @@ namespace GruppoOilPrototipo
             _nomeFile = "misurazioni" + DataFile + ".xlsx";
             _nomeFoglio = "Misurazioni";
 
-        }*/
+        }
         public void AvviaMisurazione()
         {
            if (!misurazioneAttiva)
            {
+                
                 string executablePath = System.Reflection.Assembly.GetEntryAssembly().Location;
                 string directory = Path.GetDirectoryName(executablePath);
-                string filePath = Path.Combine(directory, "Misurazioni/template.xlsx");
+                string filePath = Path.Combine(directory, "Misurazioni/culo.txt");
+                File.Create(filePath).Close();
                 //$@"{AppDomain.CurrentDomain.BaseDirectory}/Misurazioni/template.xlsx"
                 wb = new XLWorkbook(filePath);
+
                 misurazioniErrate = 0;
-                    //nuovoFile();
+                    nuovoFile();
                     NumeroMisurazioni = 2;
                     misurazioneAttiva = true;
             }
