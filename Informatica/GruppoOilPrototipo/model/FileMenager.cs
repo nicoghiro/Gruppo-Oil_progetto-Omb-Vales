@@ -22,6 +22,7 @@ namespace GruppoOilPrototipo
         private Form1 form;
         private string _dataFile;
         private int misurazioniErrate;
+        private string filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}/Misurazioni/template";
         public int NumeroMisurazioni
         {
             get { return _numeroMisurazioni; }
@@ -56,13 +57,8 @@ namespace GruppoOilPrototipo
            if (!misurazioneAttiva)
            {
                 
-                string executablePath = System.Reflection.Assembly.GetEntryAssembly().Location;
-                string directory = Path.GetDirectoryName(executablePath);
-                string filePath = Path.Combine(directory, "Misurazioni/culo.txt");
                 File.Create(filePath).Close();
-                //$@"{AppDomain.CurrentDomain.BaseDirectory}/Misurazioni/template.xlsx"
                 wb = new XLWorkbook(filePath);
-
                 misurazioniErrate = 0;
                     nuovoFile();
                     NumeroMisurazioni = 2;
@@ -75,13 +71,13 @@ namespace GruppoOilPrototipo
             if (line != null)
             {
                 if (line == "f") form.Stop();
-                scriviAppend(_nomeFile, line);
+                scriviAppend(line);
                 NumeroMisurazioni++;
                 if (NumeroMisurazioni == SettingsMenager.MaxMisurazioni + 3 && SettingsMenager.MaxMisurazioni!=0) form.Stop();
             }
             else { throw new Exception("Valore nullo"); }
         }
-        private void scriviAppend(string filename, string content)
+        private void scriviAppend(string content)
         {
             
             var ws = wb.Worksheet("Misurazioni");
@@ -109,7 +105,7 @@ namespace GruppoOilPrototipo
             wsInfo.Cell("B2").Value = SettingsMenager.IDValvola;
             wsInfo.Cell("C2").Value = NumeroMisurazioni - 3;
             wsInfo.Cell("D2").Value = misurazioniErrate;
-            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni\{SettingsMenager.IDValvola}-{SettingsMenager.NomeValvola}-{DataFile}.xlsx");
+            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/{SettingsMenager.IDValvola}-{SettingsMenager.NomeValvola}-{DataFile}.xlsx");
             StopMisurazione();
             //} else
             //{

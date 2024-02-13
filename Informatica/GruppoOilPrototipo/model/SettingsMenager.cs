@@ -66,10 +66,11 @@ namespace GruppoOilPrototipo.view
         }
         public SettingsMenager()
         {
-            FilePathMax= Path.Combine(Application.StartupPath, "Impostazioni", "MaxMisurazioni.config");
-            FilePathPorta= Path.Combine(Application.StartupPath, "Impostazioni", "Porta.config");
-            FilePathInfo = Path.Combine(Application.StartupPath, "Impostazioni", "Info.config");
+            FilePathMax= $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/MaxMisurazioni.config";
+            FilePathInfo = $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/Info.config";
+            FilePathPorta = $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/Porta.config";
             LoadSettings();
+            MessageBox.Show("Spacca");
         }
         public static string Porta
         {
