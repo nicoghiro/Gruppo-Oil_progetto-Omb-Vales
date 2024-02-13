@@ -22,7 +22,7 @@ namespace GruppoOilPrototipo
         private Form1 form;
         private string _dataFile;
         private int misurazioniErrate;
-        private string filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}/Misurazioni/template";
+        private string filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/template.xlsx";
         public int NumeroMisurazioni
         {
             get { return _numeroMisurazioni; }
@@ -57,7 +57,6 @@ namespace GruppoOilPrototipo
            if (!misurazioneAttiva)
            {
                 
-                File.Create(filePath).Close();
                 wb = new XLWorkbook(filePath);
                 misurazioniErrate = 0;
                     nuovoFile();
