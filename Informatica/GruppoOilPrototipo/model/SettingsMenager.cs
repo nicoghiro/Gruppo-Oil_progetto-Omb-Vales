@@ -75,7 +75,7 @@ namespace GruppoOilPrototipo.view
         {
             get { if (_portaAttuale == null)
                 {
-                    return "COM5";
+                    return "ttyS0";
                 } else 
                 return _portaAttuale; }
             private set { _portaAttuale = value; }
@@ -102,8 +102,8 @@ namespace GruppoOilPrototipo.view
             {
                 throw new Exception("Porta non valida");
             } 
-            Scrivi("COM" + nPorta, FilePathPorta);
-            Porta = "COM" + nPorta;
+            Scrivi("ttyS" + nPorta, FilePathPorta);
+            Porta = "ttyS" + nPorta;
             if (Form != null)
             {
                 Form.VisualizzaImpostazioni();
