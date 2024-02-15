@@ -75,7 +75,7 @@ namespace GruppoOilPrototipo.view
         {
             get { if (_portaAttuale == null)
                 {
-                    return "/dev/ttyS0";
+                    return "/dev/ttyACM0";
                 } else 
                 return _portaAttuale; }
             private set { _portaAttuale = value; }
@@ -102,8 +102,8 @@ namespace GruppoOilPrototipo.view
             {
                 throw new Exception("Porta non valida");
             } 
-            Scrivi("/dev/ttyS" + nPorta, FilePathPorta);
-            Porta = "/dev/ttyS" + nPorta;
+            Scrivi("/dev/ttyACM" + nPorta, FilePathPorta);
+            Porta = "/dev/ttyACM" + nPorta;
             if (Form != null)
             {
                 Form.VisualizzaImpostazioni();
