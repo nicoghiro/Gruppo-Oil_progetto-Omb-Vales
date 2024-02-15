@@ -85,6 +85,7 @@ namespace GruppoOilPrototipo
             if (line != null)
             {
                 Data.Input(line);
+                MessageBox.Show(line);
             }
 
         }

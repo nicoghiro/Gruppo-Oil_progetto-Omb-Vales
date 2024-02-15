@@ -98,6 +98,7 @@ namespace GruppoOilPrototipo.view
         }
         public void SetPorta(decimal nPorta)
         {
+            try { 
             if (nPorta < 0)
             {
                 throw new Exception("Porta non valida");
@@ -107,6 +108,10 @@ namespace GruppoOilPrototipo.view
             if (Form != null)
             {
                 Form.VisualizzaImpostazioni();
+            }
+            }
+            catch {
+                MessageBox.Show("porta non esistente");
             }
         }
         public void SetMax(int Max)
