@@ -2,6 +2,8 @@
 using System;
 using System.IO.Ports;
 using System.Threading;
+using SerialPortLib;
+using System.Text;
 
 namespace GruppoOilPrototipo
 {
@@ -9,7 +11,7 @@ namespace GruppoOilPrototipo
     {
         private FileMenager data;
         private Form1 form;
-        private SerialPort port;
+        private SerialPortInput port;
         private Thread closeDownThread;
 
         public FileMenager Data
@@ -22,16 +24,23 @@ namespace GruppoOilPrototipo
         {
             this.form = form;
             Data = new FileMenager(form);
-            port = new SerialPort(SettingsMenager.Porta, 9600, Parity.None, 8, StopBits.One);
-            port.RtsEnable = true;
-            port.DtrEnable = true;
-            port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+            port = new SerialPortInput();
+            port.SetPort(SettingsMenager.Porta,8000);
+            port.MessageReceived += delegate (object sender, MessageReceivedEventArgs args)
+            {
+                string line= Encoding.UTF8.GetString(args.Data);
+                if (line != null)
+                {
+                    Data.Input(line);
+                    Console.WriteLine(line); // Log the received data
+                }
+            };
         }
 
         public void start()
         {
             Data.AvviaMisurazione();
-            port.Open();
+            port.Connect();
             Console.WriteLine("Avvio riuscito");
         }
 
@@ -47,7 +56,7 @@ namespace GruppoOilPrototipo
         {
             try
             {
-                port.Close(); //close the serial port
+                port.Disconnect(); //close the serial port
             }
             catch (Exception ex)
             {
@@ -55,14 +64,9 @@ namespace GruppoOilPrototipo
             }
         }
 
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void port_DataReceived(object sender, SerialPortLib.MessageReceivedEventArgs e)
         {
-            string line = port.ReadLine();
-            if (line != null)
-            {
-                Data.Input(line);
-                Console.WriteLine(line); // Log the received data
-            }
+            
         }
     }
 }
