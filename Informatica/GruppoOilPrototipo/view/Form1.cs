@@ -60,7 +60,7 @@ namespace GruppoOilPrototipo
             {
                 InformazioniValvola inf = new InformazioniValvola(this);
                 inf.ShowDialog();
-                
+                Start();
             }
 
             catch (Exception ex)
@@ -68,7 +68,7 @@ namespace GruppoOilPrototipo
                 fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
             }
-            Start();
+            
 
 
         }

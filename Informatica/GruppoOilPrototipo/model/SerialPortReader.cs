@@ -23,6 +23,8 @@ namespace GruppoOilPrototipo
             this.form = form;
             Data = new FileMenager(form);
             port = new SerialPort(SettingsMenager.Porta, 9600, Parity.None, 8, StopBits.One);
+            port.RtsEnable = true;
+            port.DtrEnable = true;
             port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
         }
 
