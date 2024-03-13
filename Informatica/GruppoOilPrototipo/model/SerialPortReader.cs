@@ -25,7 +25,7 @@ namespace GruppoOilPrototipo
             this.form = form;
             Data = new FileMenager(form);
             port = new SerialPortInput();
-            port.SetPort(SettingsMenager.Porta,8000);
+            port.SetPort(SettingsMenager.Porta,9600);
             port.MessageReceived += delegate (object sender, MessageReceivedEventArgs args)
             {
                 string line= Encoding.UTF8.GetString(args.Data);
