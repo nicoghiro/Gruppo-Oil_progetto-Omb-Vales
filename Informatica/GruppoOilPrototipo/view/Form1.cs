@@ -29,7 +29,8 @@ namespace GruppoOilPrototipo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ar=new ArduinoReader(this);
+            SettingsMenager sm = new SettingsMenager();
+            ar =new ArduinoReader(this);
             fm = ar.getFileMenager();
             misurazioneAttiva = false;
             terminaButton.Enabled = false;
@@ -37,8 +38,6 @@ namespace GruppoOilPrototipo
             dataGridView1.Columns.Add("p2", "Coppia");
             dataGridView1.Columns.Add("om", "Ora misurazione");
             dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            SettingsMenager sm = new SettingsMenager();
-            
             SettingsMenager.Form = this;
             VisualizzaImpostazioni();
         }

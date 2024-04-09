@@ -81,11 +81,10 @@ namespace GruppoOilPrototipo.view
         }
         public static string Porta
         {
-            get { if (_portaAttuale == null)
-                {
-                    return _tipoPorta + Porta;
-                } else 
-                return _portaAttuale; }
+            get {
+    
+                    return _tipoPorta + _portaAttuale;
+            }
             private set { _portaAttuale = value; }
         }
         public static int MaxMisurazioni
@@ -139,7 +138,7 @@ namespace GruppoOilPrototipo.view
             sr.Close();
             if (line != null)
             {
-                SetPorta(int.Parse(line));
+                SetPorta((decimal)int.Parse(line));
             }
             else this.SetPorta(5);
             sr = new StreamReader(this.FilePathMax);
