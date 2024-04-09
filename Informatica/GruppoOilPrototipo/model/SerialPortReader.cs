@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Threading;
 using SerialPortLib;
 using System.Text;
+using System.Windows.Forms;
 
 namespace GruppoOilPrototipo
 {
@@ -11,8 +12,10 @@ namespace GruppoOilPrototipo
     {
         private FileMenager data;
         private Form1 form;
-        private SerialPortInput port;
+        private SerialPortInput portLinux;
+        private SerialPort portWindows;
         private Thread closeDownThread;
+        private System.Threading.Thread CloseDown;
 
         public FileMenager Data
         {
@@ -24,31 +27,58 @@ namespace GruppoOilPrototipo
         {
             this.form = form;
             Data = new FileMenager(form);
-            port = new SerialPortInput();
-            port.SetPort(SettingsMenager.Porta,9600);
-            port.MessageReceived += delegate (object sender, MessageReceivedEventArgs args)
-            {
-                string line= Encoding.UTF8.GetString(args.Data);
-                if (line != null)
+
+            OperatingSystem os = Environment.OSVersion;
+            if (os.Platform==PlatformID.Unix) {
+                portLinux = new SerialPortInput();
+                portLinux.SetPort(SettingsMenager.Porta, 9600);
+                portLinux.MessageReceived += delegate (object sender, MessageReceivedEventArgs args)
                 {
-                    Data.Input(line);
-                    Console.WriteLine(line); // Log the received data
-                }
-            };
+                    string line = Encoding.UTF8.GetString(args.Data);
+                    if (line != null)
+                    {
+                        Data.Input(line);
+                        Console.WriteLine(line); // Log the received data
+                    }
+                };
+            } else
+            {
+                portWindows = new SerialPort(SettingsMenager.Porta, 9600, Parity.None, 8, StopBits.One);
+                portWindows.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
+            }
         }
 
         public void start()
         {
             Data.AvviaMisurazione();
-            port.Connect();
+            OperatingSystem os = Environment.OSVersion;
+            if (os.Platform == PlatformID.Unix)
+            {
+                portLinux.Connect();
+            }
+            else {
+                portWindows.PortName = SettingsMenager.Porta;
+                portWindows.Open();
+            };
+            
             Console.WriteLine("Avvio riuscito");
         }
 
         public void stop()
         {
-            closeDownThread = new Thread(CloseSerialOnExit);
-            closeDownThread.Start();
-            Console.WriteLine("Misurazione terminata");
+            OperatingSystem os = Environment.OSVersion;
+            if (os.Platform == PlatformID.Unix)
+            {
+                closeDownThread = new Thread(CloseSerialOnExit);
+                closeDownThread.Start();
+                Console.WriteLine("Misurazione terminata");
+            }
+            else
+            {
+                CloseDown = new System.Threading.Thread(new System.Threading.ThreadStart(CloseSerialOnExit));
+                CloseDown.Start();
+                MessageBox.Show("Misurazione terminata");
+            }
             Data.FineMisurazione();
         }
 
@@ -56,7 +86,11 @@ namespace GruppoOilPrototipo
         {
             try
             {
-                port.Disconnect(); //close the serial port
+                OperatingSystem os = Environment.OSVersion;
+                if (os.Platform == PlatformID.Unix)
+                {
+                    portLinux.Disconnect(); //close the serial port
+                } else portWindows.Close();
             }
             catch (Exception ex)
             {
@@ -64,9 +98,15 @@ namespace GruppoOilPrototipo
             }
         }
 
-        private void port_DataReceived(object sender, SerialPortLib.MessageReceivedEventArgs e)
+        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            
+            //Get and Show a received line (all characters up to a serial New Line character)
+            string line = portWindows.ReadLine();
+            if (line != null)
+            {
+                Data.Input(line);
+            }
+
         }
     }
 }

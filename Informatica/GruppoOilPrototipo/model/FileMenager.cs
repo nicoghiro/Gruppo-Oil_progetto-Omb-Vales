@@ -105,6 +105,7 @@ namespace GruppoOilPrototipo
             wsInfo.Cell("C2").Value = NumeroMisurazioni - 3;
             wsInfo.Cell("D2").Value = misurazioniErrate;
             wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/{SettingsMenager.IDValvola}-{SettingsMenager.NomeValvola}-{DataFile}.xlsx");
+            wb.Dispose();
             StopMisurazione();
             //} else
             //{

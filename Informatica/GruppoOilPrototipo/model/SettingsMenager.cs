@@ -22,7 +22,7 @@ namespace GruppoOilPrototipo.view
         private string _filePathInfo;
         private static string _id;
         private static string _nome;
-
+        private static string _tipoPorta;
         public static string IDValvola
         {
             get { if (_id == null) return "0";
@@ -69,13 +69,21 @@ namespace GruppoOilPrototipo.view
             FilePathMax= $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/MaxMisurazioni.config";
             FilePathInfo = $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/Info.config";
             FilePathPorta = $@"{AppDomain.CurrentDomain.BaseDirectory}Impostazioni/Porta.config";
+            OperatingSystem os = Environment.OSVersion;
+            if (os.Platform == PlatformID.Unix)
+            {
+                _tipoPorta = "/dev/ttyACM";
+            } else
+            {
+                _tipoPorta = "COM";
+            }
             LoadSettings();
         }
         public static string Porta
         {
             get { if (_portaAttuale == null)
                 {
-                    return "/dev/ttyACM0";
+                    return _tipoPorta + Porta;
                 } else 
                 return _portaAttuale; }
             private set { _portaAttuale = value; }
@@ -103,8 +111,8 @@ namespace GruppoOilPrototipo.view
             {
                 throw new Exception("Porta non valida");
             } 
-            Scrivi("/dev/ttyACM" + nPorta, FilePathPorta);
-            Porta = "/dev/ttyACM" + nPorta;
+            Scrivi(nPorta.ToString(), FilePathPorta);
+            Porta = nPorta.ToString();
             if (Form != null)
             {
                 Form.VisualizzaImpostazioni();
@@ -131,7 +139,7 @@ namespace GruppoOilPrototipo.view
             sr.Close();
             if (line != null)
             {
-                SetPorta((decimal)int.Parse(line.Substring(line.Length - 1)));
+                SetPorta(int.Parse(line));
             }
             else this.SetPorta(5);
             sr = new StreamReader(this.FilePathMax);

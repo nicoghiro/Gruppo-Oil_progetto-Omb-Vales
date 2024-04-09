@@ -56,18 +56,18 @@ namespace GruppoOilPrototipo
                 dataGridView1.Rows.Clear();
             }
             
-            try
-            {
+            //try
+           // {
                 InformazioniValvola inf = new InformazioniValvola(this);
                 inf.ShowDialog();
                 Start();
-            }
+           // }
 
-            catch (Exception ex)
+           /* catch (Exception ex)
             {
                 fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
-            }
+            }*/
             
 
 
