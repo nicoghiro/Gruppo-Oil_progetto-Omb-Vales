@@ -1,0 +1,10 @@
+Tipo valvola e valvola singola non vanno create (sono già nel database)
+
+Invio serial number per ogni misurazione -> controllo esistenza serial number nel DB -> inserire valori misurazione
+
+Classe Invio -> 1 get con cui riempiamo la combobox valvole -> misurazione -> fine esecuzione -> post con Classe generale che contiene le 3 classi (dati, misurazioni, valvola)
+
+
+Portale web -> visualizza dati (+ filtri, grafico (optional), esportazione(optional)) 
+
+Excel -> grafico (da fixare), numero valvola -> acquisizione dati valvola tramite get (optional)

@@ -193,6 +193,7 @@
       <DependentUpon>PortaCom.cs</DependentUpon>
     </Compile>
     <Compile Include="model\SettingsMenager.cs" />
+    <Compile Include="view\WebMenager.cs" />
     <EmbeddedResource Include="view\InformazioniValvola.resx">
       <DependentUpon>InformazioniValvola.cs</DependentUpon>
     </EmbeddedResource>
