@@ -40,6 +40,11 @@ namespace GruppoOilPrototipo
             dataGridView1.Columns["om"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             SettingsMenager.Form = this;
             VisualizzaImpostazioni();
+            OperatingSystem os = Environment.OSVersion;
+            if (os.Platform == PlatformID.Unix)
+            {
+                apriCartellaButton.Hide();
+            }
         }
         public void VisualizzaImpostazioni()
         {

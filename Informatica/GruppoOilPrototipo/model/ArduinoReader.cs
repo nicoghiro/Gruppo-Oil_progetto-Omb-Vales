@@ -26,8 +26,8 @@ namespace GruppoOilPrototipo
         }
         public void inzio()
         {
-
-            Reader.start();
+                Reader.start();
+            
         }
         public void fine()
         {

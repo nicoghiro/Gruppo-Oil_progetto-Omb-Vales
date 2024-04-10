@@ -50,18 +50,26 @@ namespace GruppoOilPrototipo
 
         public void start()
         {
-            Data.AvviaMisurazione();
-            OperatingSystem os = Environment.OSVersion;
-            if (os.Platform == PlatformID.Unix)
+            try
             {
-                portLinux.Connect();
+                Data.AvviaMisurazione();
+                OperatingSystem os = Environment.OSVersion;
+                if (os.Platform == PlatformID.Unix)
+                {
+                    portLinux.Connect();
+                }
+                else
+                {
+                    portWindows.PortName = SettingsMenager.Porta;
+                    portWindows.Open();
+                };
+
+
+                Console.WriteLine("Avvio riuscito");
+            } catch
+            {
+                Data.FineMisurazione();
             }
-            else {
-                portWindows.PortName = SettingsMenager.Porta;
-                portWindows.Open();
-            };
-            
-            Console.WriteLine("Avvio riuscito");
         }
 
         public void stop()
