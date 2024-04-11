@@ -7,38 +7,36 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Net.Http.Headers;
 using System.Windows.Forms;
+using System.Text.Json.Serialization;
+using System.Runtime.CompilerServices;
 
 namespace GruppoOilPrototipo.view
 {
-    public static class WebMenager
+    public class WebMenager
     {
-        static HttpClient client = new HttpClient();
-        static public async Task<List<string>> Get_SerNum(string path)
+       public WebMenager()
         {
-            List<string> product=new List<string>();
-             HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-              product = await JsonSerializer.DeserializeAsync<List<string>>(await response.Content.ReadAsStreamAsync());
-            }
-            return product;
-        }
-        static public async Task<List<string>> POP_SER()
-        {
-            client.BaseAddress = new Uri("http://localhost/web_valves/web_service_valves.php/serial_number");
+            client.BaseAddress = new Uri("http://localhost/web_valves/web_service_valves.php");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));  
-            List<string> Serials = null;
-            try
-            {
-                Serials = await Get_SerNum("http://localhost/web_valves/web_service_valves.php/serial_number");
-            }
-            catch
-            {
-                throw new Exception("nessun codice seriale trovato");
-            }
-            return Serials;
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            Codice_seriale = null;
+            inf_misurazioni = null;
+            mis=null;
         }
+        static public Serial_valv Codice_seriale { get; set; }
+        static public Inf_misurazioni inf_misurazioni { get; set; }
+        static public Misurazioni mis {get; set; }
+        [JsonIgnore]
+        static HttpClient client = new HttpClient();
+        public async Task<Uri> Invio_Dati(WebMenager web) {
+
+            string json = JsonSerializer.Serialize(web);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("new_value", content);
+            response.EnsureSuccessStatusCode();
+            return response.Headers.Location;
+        }
+        
     }
 }

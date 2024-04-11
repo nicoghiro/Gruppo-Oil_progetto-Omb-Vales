@@ -17,7 +17,9 @@ namespace GruppoOilPrototipo
 {
     public partial class Form1 : Form
     {
+        WebMenager webMenager = new WebMenager();
         ArduinoReader ar;
+        Misurazioni mis = new Misurazioni();
         FileMenager fm;
         bool misurazioneAttiva;
       
@@ -111,6 +113,7 @@ namespace GruppoOilPrototipo
                 {
                     this.Invoke(new MethodInvoker(delegate
                     {
+                        mis.Agg_mis(content);
                         dataGridView1.Rows.Insert(0, content.Split(';'));
                     }));
                     return;
@@ -149,11 +152,12 @@ namespace GruppoOilPrototipo
 
         }
 
-        private void terminaButton_Click(object sender, EventArgs e)
+        private async void terminaButton_Click(object sender, EventArgs e)
         {
             try
             {
                 Stop();
+                Uri destination= await webMenager.Invio_Dati(webMenager);
             }
             catch (Exception ex)
             {

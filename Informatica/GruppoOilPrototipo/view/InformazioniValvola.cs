@@ -27,6 +27,10 @@ namespace GruppoOilPrototipo.model
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Serial_valv Ser = new Serial_valv(CMB_NumSer.Text);
+            Inf_misurazioni Inf = new Inf_misurazioni();
+            WebMenager.Codice_seriale = Ser;
+            WebMenager.inf_misurazioni = Inf;
                 this.Hide();
                 form1.Show();
                 this.Close();
@@ -35,7 +39,7 @@ namespace GruppoOilPrototipo.model
 
         private async void InformazioniValvola_Load(object sender, EventArgs e)
         {
-           List<string> SerNum= await WebMenager.POP_SER();
+           List<string> SerNum= await Serial_valv.POP_SER();
             PopolaCmb(SerNum);   
            
         }
