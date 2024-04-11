@@ -27,26 +27,38 @@ namespace GruppoOilPrototipo.model
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string id = idText.Text;
-            string nome = nomeText.Text;
-            if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(nome))
-            {
-                SettingsMenager sm = new SettingsMenager();
-                sm.SetInfo(id, nome);
                 this.Hide();
                 form1.Show();
                 this.Close();
-            }
-            else MessageBox.Show("Nome o ID non validi");
+         
         }
 
-        private void InformazioniValvola_Load(object sender, EventArgs e)
+        private async void InformazioniValvola_Load(object sender, EventArgs e)
         {
-            nomeText.Text= SettingsMenager.NomeValvola;
-            idText.Text = SettingsMenager.IDValvola;
+           List<string> SerNum= await WebMenager.POP_SER();
+            PopolaCmb(SerNum);   
+           
+        }
+        public void PopolaCmb(List<string> SerNum)
+        {
+            foreach(string s in SerNum)
+            {
+                CMB_NumSer.Items.Add(s);
+            }
+            CMB_NumSer.SelectedIndex=1;
         }
         
         private void InformazioniValvola_FormClosing()
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CMB_NumSer_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

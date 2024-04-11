@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 08, 2024 alle 10:32
--- Versione del server: 10.4.32-MariaDB
+-- Creato il: Apr 11, 2024 alle 17:19
+-- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -41,7 +41,6 @@ CREATE TABLE `misurazioni` (
 
 CREATE TABLE `tipo` (
   `Id_valvola` int(11) NOT NULL,
-  `OMB JOB NUMBER` varchar(50) NOT NULL,
   `VALVE CODE` varchar(100) NOT NULL,
   `VALVE DESCRIPTION` varchar(500) NOT NULL,
   `GEAR MODEL` varchar(100) NOT NULL,
@@ -52,9 +51,9 @@ CREATE TABLE `tipo` (
 -- Dump dei dati per la tabella `tipo`
 --
 
-INSERT INTO `tipo` (`Id_valvola`, `OMB JOB NUMBER`, `VALVE CODE`, `VALVE DESCRIPTION`, `GEAR MODEL`, `M.A. GEAR`) VALUES
-(1, '01/2300349', 'HAT6TF0064000', 'BSE-S 30\" #600-SF LF2/XM19/CF8M/XM-19+RPTFE-P', 'FORCAST EG50K', 287),
-(3, '01/2300053', 'V136F89000000', 'TOBV 36\" #150 DF RF SERIE.A CRYO GEAR-LD-DRIP.PL-SP.EXT', 'CUM WG400', 157);
+INSERT INTO `tipo` (`Id_valvola`, `VALVE CODE`, `VALVE DESCRIPTION`, `GEAR MODEL`, `M.A. GEAR`) VALUES
+(1, 'HAT6TF0064000', 'BSE-S 30\" #600-SF LF2/XM19/CF8M/XM-19+RPTFE-P', 'FORCAST EG50K', 287),
+(3, 'V136F89000000', 'TOBV 36\" #150 DF RF SERIE.A CRYO GEAR-LD-DRIP.PL-SP.EXT', 'CUM WG400', 157);
 
 -- --------------------------------------------------------
 
@@ -78,6 +77,7 @@ CREATE TABLE `valori` (
 
 CREATE TABLE `valvola` (
   `SERIAL_NUMBER` varchar(50) NOT NULL,
+  `OMB JOB NUMBER` varchar(50) NOT NULL,
   `Tipo_valvola` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -85,9 +85,9 @@ CREATE TABLE `valvola` (
 -- Dump dei dati per la tabella `valvola`
 --
 
-INSERT INTO `valvola` (`SERIAL_NUMBER`, `Tipo_valvola`) VALUES
-('316027-1', 1),
-('302362-1', 3);
+INSERT INTO `valvola` (`SERIAL_NUMBER`, `OMB JOB NUMBER`, `Tipo_valvola`) VALUES
+('302362-1', '01/2300053', 3),
+('316027-1', '01/2300349', 1);
 
 --
 -- Indici per le tabelle scaricate
