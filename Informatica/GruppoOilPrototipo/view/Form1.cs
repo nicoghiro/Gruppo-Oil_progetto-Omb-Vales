@@ -113,8 +113,9 @@ namespace GruppoOilPrototipo
                 {
                     this.Invoke(new MethodInvoker(delegate
                     {
-                        mis.Agg_mis(content);
+                        
                         dataGridView1.Rows.Insert(0, content.Split(';'));
+                        mis.Agg_mis(content);
                     }));
                     return;
                 }
@@ -157,7 +158,7 @@ namespace GruppoOilPrototipo
             try
             {
                 Stop();
-                Uri destination= await webMenager.Invio_Dati(webMenager);
+               Uri destination= await webMenager.Invio_Dati(webMenager);
             }
             catch (Exception ex)
             {

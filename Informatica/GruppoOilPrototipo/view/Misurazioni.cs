@@ -8,6 +8,10 @@ namespace GruppoOilPrototipo.view
 {
     public class Misurazioni
     {
+        public Misurazioni()
+        {
+            misurazioni = new List<string>();
+        }
         List<string> misurazioni { get; set; }
         public void Agg_mis(string mis)
         {

@@ -29,11 +29,12 @@ namespace GruppoOilPrototipo.view
         static public Misurazioni mis {get; set; }
         [JsonIgnore]
         static HttpClient client = new HttpClient();
+
         public async Task<Uri> Invio_Dati(WebMenager web) {
 
             string json = JsonSerializer.Serialize(web);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("new_value", content);
+            HttpResponseMessage response = await client.PostAsync("/new_value", content);
             response.EnsureSuccessStatusCode();
             return response.Headers.Location;
         }
