@@ -16,28 +16,30 @@ namespace GruppoOilPrototipo.view
     {
        public WebMenager()
         {
-            client.BaseAddress = new Uri("http://localhost/web_valves/web_service_valves.php");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+         
             Codice_seriale = null;
             inf_misurazioni = null;
             mis=null;
         }
-        static public Serial_valv Codice_seriale { get; set; }
-        static public Inf_misurazioni inf_misurazioni { get; set; }
-        static public Misurazioni mis {get; set; }
+         public Serial_valv Codice_seriale { get; set; }
+         public Inf_misurazioni inf_misurazioni { get;  set; }
+        public Misurazioni mis {get;  set; }
         [JsonIgnore]
         static HttpClient client = new HttpClient();
 
         public async Task<Uri> Invio_Dati(WebMenager web) {
-
+            client.BaseAddress = new Uri("http://localhost/web_valves/web_service_valves.php");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
             string json = JsonSerializer.Serialize(web);
+            MessageBox.Show(json);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("/new_value", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost/web_valves/web_service_valves.php/new_value", content);
             response.EnsureSuccessStatusCode();
             return response.Headers.Location;
         }
+        
         
     }
 }

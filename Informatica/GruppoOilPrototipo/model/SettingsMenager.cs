@@ -149,10 +149,10 @@ namespace GruppoOilPrototipo.view
                 SetMax(int.Parse(line));
             }
             else SetMax(100);
-            sr = new StreamReader(FilePathInfo);
-            line = sr.ReadLine();
-            sr.Close();
-            if (line != null)
+            //sr = new StreamReader(FilePathInfo);
+            //line = sr.ReadLine();
+            //sr.Close();
+           /* if (line != null)
             {
                 try
                 {
@@ -162,9 +162,9 @@ namespace GruppoOilPrototipo.view
                 {
                     SetInfo("0", "N/A");
                 }
-            }
+            }*/
         }
-        public void SetInfo(string id, string nome)
+        /*public void SetInfo(string seriale)
         {
             if (String.IsNullOrEmpty(id) && String.IsNullOrEmpty(nome)) throw new Exception("Nome e/o ID non validi");
             Scrivi(id + ";" +nome + ";" , FilePathInfo);
@@ -174,6 +174,6 @@ namespace GruppoOilPrototipo.view
             {
                 Form.VisualizzaImpostazioni();
             }
-         }
+         }*/
     }
 }

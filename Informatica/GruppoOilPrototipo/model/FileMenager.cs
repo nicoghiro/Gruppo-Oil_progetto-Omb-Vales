@@ -23,6 +23,16 @@ namespace GruppoOilPrototipo
         private string _dataFile;
         private int misurazioniErrate;
         private string filePath = $@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/template.xlsx";
+        private string _serialeValvola;
+
+        public void Test()
+        {
+        }
+        public string SerialeValvola
+        {
+            get {return _serialeValvola; }
+            set { _serialeValvola = value; }
+        }
         public int NumeroMisurazioni
         {
             get { return _numeroMisurazioni; }
@@ -41,6 +51,7 @@ namespace GruppoOilPrototipo
             
 
         }
+        
         private void nuovoFile()
         {
             DataFile = "";
@@ -99,12 +110,12 @@ namespace GruppoOilPrototipo
         {
             // if (misurazioneAttiva== true)
             //{
+            MessageBox.Show(SerialeValvola);
             var wsInfo = wb.Worksheet("Info");
-            wsInfo.Cell("A2").Value = SettingsMenager.NomeValvola;
-            wsInfo.Cell("B2").Value = SettingsMenager.IDValvola;
-            wsInfo.Cell("C2").Value = NumeroMisurazioni - 3;
-            wsInfo.Cell("D2").Value = misurazioniErrate;
-            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/{SettingsMenager.IDValvola}-{SettingsMenager.NomeValvola}-{DataFile}.xlsx");
+            wsInfo.Cell("A2").Value = SerialeValvola;
+            wsInfo.Cell("B2").Value = NumeroMisurazioni - 3;
+            wsInfo.Cell("C2").Value = misurazioniErrate;
+            wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/{SerialeValvola}-{DataFile}.xlsx");
             wb.Dispose();
             StopMisurazione();
             //} else

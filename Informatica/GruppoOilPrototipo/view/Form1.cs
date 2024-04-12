@@ -17,7 +17,7 @@ namespace GruppoOilPrototipo
 {
     public partial class Form1 : Form
     {
-        WebMenager webMenager = new WebMenager();
+        public WebMenager webMenager = new WebMenager();
         ArduinoReader ar;
         Misurazioni mis = new Misurazioni();
         FileMenager fm;
@@ -62,24 +62,26 @@ namespace GruppoOilPrototipo
                 dataGridView1.Rows.Clear();
             }
             
-            //try
-           // {
+            try
+           {
                 InformazioniValvola inf = new InformazioniValvola(this);
                 inf.ShowDialog();
                 Start();
-           // }
+           }
 
-           /* catch (Exception ex)
+            catch (Exception ex)
             {
                 fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
-            }*/
+            }
             
 
 
         }
         public void Start()
         {
+            fm.SerialeValvola = webMenager.Codice_seriale.Codice_ser;
+            
             ar.inzio();
             dataGridView1.Columns["p1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView1.Columns["p2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -96,10 +98,11 @@ namespace GruppoOilPrototipo
             
             
         }
-        public void Stop()
+        public async void Stop()
         {
             ar.fine();
-            
+            webMenager.mis = mis;
+            Uri destination = await webMenager.Invio_Dati(webMenager);
             misurazioneAttiva = false;
             avviaButton.Enabled = true;
             terminaButton.Enabled = false;
@@ -153,12 +156,12 @@ namespace GruppoOilPrototipo
 
         }
 
-        private async void terminaButton_Click(object sender, EventArgs e)
+        private  void terminaButton_Click(object sender, EventArgs e)
         {
             try
             {
                 Stop();
-               Uri destination= await webMenager.Invio_Dati(webMenager);
+                
             }
             catch (Exception ex)
             {
