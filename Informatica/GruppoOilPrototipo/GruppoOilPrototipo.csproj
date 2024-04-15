@@ -195,14 +195,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\SerialPortReader.cs" />
-    <Compile Include="view\Inf_misurazioni.cs" />
+    <Compile Include="model\Inf_misurazioni.cs" />
     <Compile Include="view\MAXmisurazioni.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\MAXmisurazioni.Designer.cs">
       <DependentUpon>MAXmisurazioni.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\Misurazioni.cs" />
+    <Compile Include="model\Misurazioni.cs" />
     <Compile Include="view\PortaCom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,8 +210,8 @@
       <DependentUpon>PortaCom.cs</DependentUpon>
     </Compile>
     <Compile Include="model\SettingsMenager.cs" />
-    <Compile Include="view\Serial_valv.cs" />
-    <Compile Include="view\WebMenager.cs" />
+    <Compile Include="model\Serial_valv.cs" />
+    <Compile Include="model\WebMenager.cs" />
     <EmbeddedResource Include="view\InformazioniValvola.resx">
       <DependentUpon>InformazioniValvola.cs</DependentUpon>
     </EmbeddedResource>

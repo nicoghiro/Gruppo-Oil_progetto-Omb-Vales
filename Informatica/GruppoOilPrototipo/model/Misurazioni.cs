@@ -15,6 +15,7 @@ namespace GruppoOilPrototipo.view
        public  List<string> misurazioni { get; set; }
         public void Agg_mis(string mis)
         {
+            mis = mis.Replace("\r", "");
             misurazioni.Add(mis); 
         }
     }
