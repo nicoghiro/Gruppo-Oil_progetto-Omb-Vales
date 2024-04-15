@@ -32,8 +32,7 @@ namespace GruppoOilPrototipo.view
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            string json = JsonSerializer.Serialize(web);
-            MessageBox.Show(json);
+            string json = JsonSerializer.Serialize(web, new JsonSerializerOptions { WriteIndented = true });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("http://localhost/web_valves/web_service_valves.php/new_value", content);
             response.EnsureSuccessStatusCode();
