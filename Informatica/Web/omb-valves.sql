@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 11, 2024 alle 17:19
+-- Creato il: Apr 16, 2024 alle 23:30
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -28,10 +28,32 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `misurazioni` (
-  `data_misurazione` date NOT NULL,
   `id_misurazione` int(11) NOT NULL,
-  `Id_valvola` int(11) NOT NULL
+  `data_misurazione` varchar(35) NOT NULL,
+  `ser_valvola` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `misurazioni`
+--
+
+INSERT INTO `misurazioni` (`id_misurazione`, `data_misurazione`, `ser_valvola`) VALUES
+(3, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(4, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(5, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(6, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(7, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(8, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(9, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(10, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(11, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(12, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(13, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(14, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(15, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(16, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(17, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(18, '2024-04-15T11:09:47.3991292+02:00', '302362-1');
 
 -- --------------------------------------------------------
 
@@ -65,9 +87,23 @@ CREATE TABLE `valori` (
   `id_valori` int(11) NOT NULL,
   `coppia` float NOT NULL,
   `angolo` float NOT NULL,
-  `orario_misurazione` time NOT NULL,
+  `orario_valore` varchar(50) NOT NULL,
   `id_misurazione` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `valori`
+--
+
+INSERT INTO `valori` (`id_valori`, `coppia`, `angolo`, `orario_valore`, `id_misurazione`) VALUES
+(1, 858, 809, '15/04/2024 11:09:50,227', 18),
+(2, 857, 807, '15/04/2024 11:09:50,726', 18),
+(3, 857, 805, '15/04/2024 11:09:51,226', 18),
+(4, 857, 797, '15/04/2024 11:09:51,730', 18),
+(5, 857, 819, '15/04/2024 11:09:52,229', 18),
+(6, 857, 797, '15/04/2024 11:09:52,729', 18),
+(7, 857, 800, '15/04/2024 11:09:53,229', 18),
+(8, 857, 801, '15/04/2024 11:09:53,733', 18);
 
 -- --------------------------------------------------------
 
@@ -97,7 +133,8 @@ INSERT INTO `valvola` (`SERIAL_NUMBER`, `OMB JOB NUMBER`, `Tipo_valvola`) VALUES
 -- Indici per le tabelle `misurazioni`
 --
 ALTER TABLE `misurazioni`
-  ADD PRIMARY KEY (`id_misurazione`);
+  ADD PRIMARY KEY (`id_misurazione`),
+  ADD KEY `ser_valv` (`ser_valvola`);
 
 --
 -- Indici per le tabelle `tipo`
@@ -127,7 +164,7 @@ ALTER TABLE `valvola`
 -- AUTO_INCREMENT per la tabella `misurazioni`
 --
 ALTER TABLE `misurazioni`
-  MODIFY `id_misurazione` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_misurazione` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `tipo`
@@ -139,11 +176,17 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT per la tabella `valori`
 --
 ALTER TABLE `valori`
-  MODIFY `id_valori` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_valori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Limiti per le tabelle scaricate
 --
+
+--
+-- Limiti per la tabella `misurazioni`
+--
+ALTER TABLE `misurazioni`
+  ADD CONSTRAINT `ser_valv` FOREIGN KEY (`ser_valvola`) REFERENCES `valvola` (`SERIAL_NUMBER`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `valori`
