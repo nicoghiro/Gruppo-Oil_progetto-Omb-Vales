@@ -28,13 +28,13 @@ namespace GruppoOilPrototipo.view
         static HttpClient client = new HttpClient();
 
         public async Task<Uri> Invio_Dati(WebMenager web) {
-            client.BaseAddress = new Uri("http://localhost/web_valves/web_service_valves.php");
+            client.BaseAddress = new Uri("http://localhost/web_valves/index.php");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
             string json = JsonSerializer.Serialize(web, new JsonSerializerOptions { WriteIndented = true });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost/web_valves/web_service_valves.php/new_value", content);
+            HttpResponseMessage response = await client.PostAsync("http://localhost/web_valves/index.php", content);
             response.EnsureSuccessStatusCode();
             return response.Headers.Location;
         }
