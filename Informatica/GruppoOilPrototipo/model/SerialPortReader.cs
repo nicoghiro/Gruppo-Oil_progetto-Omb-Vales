@@ -37,6 +37,7 @@ namespace GruppoOilPrototipo
                     string line = Encoding.UTF8.GetString(args.Data);
                     if (line != null)
                     {
+                        Console.WriteLine("LINUX");
                         Data.Input(line);
                         Console.WriteLine(line); // Log the received data
                     }
