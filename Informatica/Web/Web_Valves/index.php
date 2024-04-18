@@ -16,6 +16,7 @@ try {
             $sql = "SELECT SERIAL_NUMBER FROM `valvola`";
             $stmt = $conn->query($sql);
             $serial_numbers = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            http_response_code(200);
             echo json_encode($serial_numbers);
             exit();
         }
@@ -29,10 +30,11 @@ try {
             }
             $json_tipo = json_encode($tipo_array);
             header('Content-Type: application/json');
+            http_response_code(200);
             echo $json_tipo;
              exit();
         }
-        if ($last_segment != '' && $array[2] = 'misuration') {
+        if ($last_segment != '' && $array[2] == 'misuration') {
             $sql = "SELECT * FROM `misurazioni` WHERE ser_valvola = :serial";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':serial', $last_segment, PDO::PARAM_STR);
@@ -44,13 +46,16 @@ try {
                 $mis_array[] = $row;
             }
 
-            $json_mis = json_encode($mis_array);
+            $json_mis = json_encode($mis_array);  
+            http_response_code(200);
             header('Content-Type: application/json');
+          
             echo $json_mis;
             exit();
 
         } 
-        if ($last_segment != '' && $array[2] = 'values') {
+        if ($array[3] != '' && $array[2] == 'values') {
+           
             $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis ORDER BY angolo";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id_mis', $last_segment, PDO::PARAM_STR);
@@ -64,7 +69,7 @@ try {
 
             $json_values = json_encode($values_array);
             header('Content-Type: application/json');
-            echo $json_values;
+           echo $json_values;
             exit();
 
         }
