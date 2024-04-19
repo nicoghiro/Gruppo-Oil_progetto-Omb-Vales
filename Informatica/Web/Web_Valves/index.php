@@ -34,6 +34,23 @@ try {
             echo $json_tipo;
              exit();
         }
+        if ($array[2] =='valves' && $last_segment != '') {
+            $sql = "SELECT * FROM `valvola` WHERE Tipo_valvola=:valv";
+            $stmt = $conn->prepare($sql);
+            $inp = $last_segment . '%'; 
+            $stmt->bindParam(':valv', $inp, PDO::PARAM_STR);
+            $stmt->execute();
+            $tipo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tipo_array = array();
+            foreach ($tipo as $row) {
+                $tipo_array[] = $row;
+            }
+            $json_tipo = json_encode($tipo_array);
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo $json_tipo;
+             exit();
+        }
         if ($last_segment != '' && $array[2] == 'type_vales') {
             $sql = "SELECT * FROM `tipo` WHERE `VALVE CODE` LIKE :inp";
             $stmt = $conn->prepare($sql);

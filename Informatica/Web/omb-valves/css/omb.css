@@ -1,10 +1,9 @@
 #myInput {
-    float: left;
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
-    width: 70%; /* Full-width */
+    width: 65%; /* Full-width */
     font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
+    padding: 12px 20px 12px 20px; /* Add some padding */
     border: 2px solid #ddd; /* Add a grey border */
     margin-bottom: 0.5%; /* Add some space below the input */
     margin-top:0.5%;
@@ -12,6 +11,12 @@
   #intestation {
     float: left;
     margin-top:0.5%;
-    float: left; 
+    margin-left: 0.5%;
+    width: 14%;
+  }
+  #imagine{
+    float: right;
+    margin-right: 1%;
+    margin-top:0.5%;
     width: 15%;
   }

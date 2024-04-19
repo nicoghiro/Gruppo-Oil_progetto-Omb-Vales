@@ -16,10 +16,11 @@
     $(document).ready(function() {
         fetchData("http://localhost/web_valves/type_vales");
       })
-      </script>
+   </script>
   <div>
     <h2 id="intestation">Valve types</h2>
     <input type="text" id="myInput" onkeyup="Cerca()" placeholder="Search for valve code">
+    <img id ="imagine" src="image/logo.png" alt="logo omb-valves">
     <table class="table">
       <thead class="thead-dark" style="width: 100%;">
         <tr>
@@ -33,6 +34,20 @@
       <tbody id="valvesTableBody">
       </tbody>
     </table>
+  </div>
+  <div class="modal fade" id="valveModal" tabindex="-1" role="dialog" aria-labelledby="valveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="valveModalLabel">Valve Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="valveDetails">
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
