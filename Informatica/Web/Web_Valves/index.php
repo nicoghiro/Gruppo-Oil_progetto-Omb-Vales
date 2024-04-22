@@ -4,7 +4,7 @@
 $servername = "localhost";
 $username = "ADMIN";
 $password = "12345";
-$dbname = "omb-valves";
+$dbname = "my_ombvalvesdata";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -89,7 +89,7 @@ try {
             exit();
 
         } 
-        if ($array[3] != '' && $array[2] == 'values') {
+        if ($last_segment != '' && $array[2] == 'values') {
            
             $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis ORDER BY angolo";
             $stmt = $conn->prepare($sql);
