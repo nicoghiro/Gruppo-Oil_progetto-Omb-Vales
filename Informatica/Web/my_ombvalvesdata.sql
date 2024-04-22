@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Apr 16, 2024 alle 23:30
--- Versione del server: 10.4.28-MariaDB
--- Versione PHP: 8.2.12
+-- Host: localhost
+-- Creato il: Apr 22, 2024 alle 10:08
+-- Versione del server: 8.0.32
+-- Versione PHP: 8.0.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `omb-valves`
+-- Database: `my_ombvalvesdata`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `misurazioni` (
-  `id_misurazione` int(11) NOT NULL,
-  `data_misurazione` varchar(35) NOT NULL,
-  `ser_valvola` varchar(50) NOT NULL
+  `id_misurazione` int NOT NULL,
+  `data_misurazione` varchar(35) COLLATE utf8mb4_general_ci NOT NULL,
+  `ser_valvola` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -38,22 +38,8 @@ CREATE TABLE `misurazioni` (
 --
 
 INSERT INTO `misurazioni` (`id_misurazione`, `data_misurazione`, `ser_valvola`) VALUES
-(3, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(4, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(5, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(6, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(7, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(8, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(9, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(10, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(11, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(12, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(13, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(14, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(15, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(16, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(17, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
-(18, '2024-04-15T11:09:47.3991292+02:00', '302362-1');
+(18, '2024-04-15T11:09:47.3991292+02:00', '302362-1'),
+(19, '2024-04-15T11:09:48.3991292+02:00', '302362-1');
 
 -- --------------------------------------------------------
 
@@ -62,11 +48,11 @@ INSERT INTO `misurazioni` (`id_misurazione`, `data_misurazione`, `ser_valvola`) 
 --
 
 CREATE TABLE `tipo` (
-  `Id_valvola` int(11) NOT NULL,
-  `VALVE CODE` varchar(100) NOT NULL,
-  `VALVE DESCRIPTION` varchar(500) NOT NULL,
-  `GEAR MODEL` varchar(100) NOT NULL,
-  `M.A. GEAR` int(11) NOT NULL
+  `Id_valvola` int NOT NULL,
+  `VALVE CODE` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `VALVE DESCRIPTION` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `GEAR MODEL` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `M.A. GEAR` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,11 +70,11 @@ INSERT INTO `tipo` (`Id_valvola`, `VALVE CODE`, `VALVE DESCRIPTION`, `GEAR MODEL
 --
 
 CREATE TABLE `valori` (
-  `id_valori` int(11) NOT NULL,
+  `id_valori` int NOT NULL,
   `coppia` float NOT NULL,
   `angolo` float NOT NULL,
-  `orario_valore` varchar(50) NOT NULL,
-  `id_misurazione` int(11) NOT NULL
+  `orario_valore` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `id_misurazione` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -103,7 +89,15 @@ INSERT INTO `valori` (`id_valori`, `coppia`, `angolo`, `orario_valore`, `id_misu
 (5, 857, 819, '15/04/2024 11:09:52,229', 18),
 (6, 857, 797, '15/04/2024 11:09:52,729', 18),
 (7, 857, 800, '15/04/2024 11:09:53,229', 18),
-(8, 857, 801, '15/04/2024 11:09:53,733', 18);
+(8, 857, 801, '15/04/2024 11:09:53,733', 18),
+(9, 858, 809, '15/04/2024 11:09:50,227', 19),
+(10, 857, 807, '15/04/2024 11:09:50,726', 19),
+(11, 857, 805, '15/04/2024 11:09:51,226', 19),
+(12, 857, 797, '15/04/2024 11:09:51,730', 19),
+(13, 857, 819, '15/04/2024 11:09:52,229', 19),
+(14, 857, 797, '15/04/2024 11:09:52,729', 19),
+(15, 857, 800, '15/04/2024 11:09:53,229', 19),
+(16, 857, 801, '15/04/2024 11:09:53,733', 19);
 
 -- --------------------------------------------------------
 
@@ -112,9 +106,9 @@ INSERT INTO `valori` (`id_valori`, `coppia`, `angolo`, `orario_valore`, `id_misu
 --
 
 CREATE TABLE `valvola` (
-  `SERIAL_NUMBER` varchar(50) NOT NULL,
-  `OMB JOB NUMBER` varchar(50) NOT NULL,
-  `Tipo_valvola` int(11) NOT NULL
+  `SERIAL_NUMBER` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `OMB JOB NUMBER` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Tipo_valvola` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -123,7 +117,10 @@ CREATE TABLE `valvola` (
 
 INSERT INTO `valvola` (`SERIAL_NUMBER`, `OMB JOB NUMBER`, `Tipo_valvola`) VALUES
 ('302362-1', '01/2300053', 3),
-('316027-1', '01/2300349', 1);
+('316027-1', '01/2300349', 1),
+('316027-9', '71/2300053', 3),
+('450027-9', '69/2300053', 3),
+('886027-1', '15/2300349', 3);
 
 --
 -- Indici per le tabelle scaricate
@@ -164,19 +161,19 @@ ALTER TABLE `valvola`
 -- AUTO_INCREMENT per la tabella `misurazioni`
 --
 ALTER TABLE `misurazioni`
-  MODIFY `id_misurazione` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_misurazione` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT per la tabella `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `Id_valvola` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `Id_valvola` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `valori`
 --
 ALTER TABLE `valori`
-  MODIFY `id_valori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_valori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Limiti per le tabelle scaricate

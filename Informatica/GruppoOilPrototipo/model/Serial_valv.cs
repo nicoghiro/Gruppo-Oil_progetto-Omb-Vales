@@ -33,14 +33,14 @@ namespace GruppoOilPrototipo.view
         }
         static public async Task<List<string>> POP_SER()
         {
-            client.BaseAddress = new Uri("http://localhost/web_valves/index.php/serial_number");
+            client.BaseAddress = new Uri("http://ombvalvesdata.altervista.org/Web_Valves/index.php/serial_number");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
             List<string> Serials = null;
             try
             {
-                Serials = await Get_SerNum("http://localhost/web_valves/index.php/serial_number");
+                Serials = await Get_SerNum("http://ombvalvesdata.altervista.org/Web_Valves/index.php/serial_number");
             }
             catch
             {
