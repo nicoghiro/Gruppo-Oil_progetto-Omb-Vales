@@ -116,8 +116,9 @@ namespace GruppoOilPrototipo
                 {
                     this.Invoke(new MethodInvoker(delegate
                     {
-                        
-                        dataGridView1.Rows.Insert(0, content.Split(';'));
+                        string[] stampa= content.Split(';');
+                        stampa[2] = stampa[3];
+                        dataGridView1.Rows.Insert(0, stampa);
                         mis.Agg_mis(content);
                     }));
                     return;

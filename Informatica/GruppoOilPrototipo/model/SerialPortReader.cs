@@ -16,6 +16,7 @@ namespace GruppoOilPrototipo
         private SerialPort portWindows;
         private Thread closeDownThread;
         private System.Threading.Thread CloseDown;
+        private int angoloPrec;
 
         public FileMenager Data
         {
@@ -37,9 +38,7 @@ namespace GruppoOilPrototipo
                     string line = Encoding.UTF8.GetString(args.Data);
                     if (line != null)
                     {
-                        Console.WriteLine("LINUX");
-                        Data.Input(line);
-                        Console.WriteLine(line); // Log the received data
+                        misurazioneRicevuta(line); // Log the received data
                     }
                 };
             } else
@@ -113,9 +112,38 @@ namespace GruppoOilPrototipo
             string line = portWindows.ReadLine();
             if (line != null)
             {
-                Data.Input(line);
+                misurazioneRicevuta(line);
             }
 
+        }
+        private void misurazioneRicevuta(string line)
+        {
+            string[] tmp;
+            try 
+            {
+                tmp = line.Split(';');
+                int angolo = int.Parse(tmp[0]);
+                if (angoloPrec != null) 
+                {
+                    if (angoloPrec > angolo)
+                    {
+                        line += ";c";
+                        data.Input(line);
+                    }
+                    else if (angoloPrec < angolo)
+                    {
+                        line += ";a";
+                        data.Input(line);
+                    } 
+                    angoloPrec=angolo;
+                }
+                
+
+            } catch(Exception ex)
+            {
+                Console.WriteLine("errore nella misurazione");
+            }
+            
         }
     }
 }

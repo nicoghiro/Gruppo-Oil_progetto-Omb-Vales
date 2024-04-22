@@ -16,6 +16,8 @@ namespace GruppoOilPrototipo
     {
         private string _nomeFile;
         private int _numeroMisurazioni;
+        private int misurazioniApertura;
+        private int misurazioniChiusura;
         private string _nomeFoglio;
         XLWorkbook wb;
         private bool misurazioneAttiva;
@@ -72,6 +74,8 @@ namespace GruppoOilPrototipo
                 misurazioniErrate = 0;
                     nuovoFile();
                     NumeroMisurazioni = 2;
+                    misurazioniApertura = 2;
+                    misurazioniChiusura = 2;
                     misurazioneAttiva = true;
             }
             else throw new Exception("Misurazione già in corso");
@@ -89,14 +93,31 @@ namespace GruppoOilPrototipo
         }
         private void scriviAppend(string content)
         {
-            
-            var ws = wb.Worksheet("Misurazioni");
+
+            bool apertura=true;
             try
                 {
-                    string orarioMisurazione = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "," + DateTime.Now.Millisecond.ToString();
-                    ws.Cell("A" + NumeroMisurazioni).Value = content.Split(';')[0];
-                    ws.Cell("B" + NumeroMisurazioni).Value = content.Split(';')[1];
-                    ws.Cell("C" + NumeroMisurazioni).Value = orarioMisurazione;
+                var ws= wb.Worksheet("Apertura"); ;
+                if (content.Split(';')[2] == "c")
+                {
+                    apertura = false;
+                    ws = wb.Worksheet("Chiusura");
+                }
+                string orarioMisurazione = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "," + DateTime.Now.Millisecond.ToString();
+                if (apertura)
+                {
+                    ws.Cell("A" + misurazioniApertura).Value = content.Split(';')[0];
+                    ws.Cell("B" + misurazioniApertura).Value = content.Split(';')[1];
+                    ws.Cell("C" + misurazioniApertura).Value = orarioMisurazione;
+                    misurazioniApertura++;
+                } else
+                {
+                    ws.Cell("A" + misurazioniChiusura).Value = content.Split(';')[0];
+                    ws.Cell("B" + misurazioniChiusura).Value = content.Split(';')[1];
+                    ws.Cell("C" + misurazioniChiusura).Value = orarioMisurazione;
+                    misurazioniChiusura++;
+                }
+                    
                     content+= ";" + orarioMisurazione + ";";
                     form.OttieniMisurazione(content);
                 }
