@@ -43,7 +43,7 @@ function populateModalWithValveData(valveId) {
                        "<p><strong>OMB JOB NUMBER:</strong> " + detail['OMB JOB NUMBER'] + "</p>" +
                      "</div>" +
                      "<div class='col-md-6'>" +
-                       "<a href='details_page.html?serial_number=" + detail['SERIAL_NUMBER'] + "' class='btn btn-primary'>View misurations</a>" +
+                       "<a href='measurement.html?serial_number=" + detail['SERIAL_NUMBER'] + "' class='btn btn-primary'>View misurations</a>" +
                      "</div>" +
                    "</div>" +
                    "<hr>";
