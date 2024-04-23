@@ -2,7 +2,7 @@
 
 // Connessione al database
 $servername = "localhost";
-$username = "ADMIN";
+$username = "admin";
 $password = "12345";
 $dbname = "my_ombvalvesdata";
 try {

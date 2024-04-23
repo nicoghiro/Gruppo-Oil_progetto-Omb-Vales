@@ -20,3 +20,15 @@
     margin-top:0.5%;
     width: 15%;
   }
+  .half-height {
+    height: 50vh;
+    max-height: 50%; 
+    overflow-y: auto; 
+  }
+
+  
+  .sticky-thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;/
+  }
