@@ -1,6 +1,5 @@
-repository di gruppo per progetto pcto Amb vales
+repository di gruppo per progetto pcto Amb valves
 Partecipanti sezione informatica:
-Joseph Mesnsah , Colombi Alessandro , Lin Davide e Ghiradi Nicolas (capogruppo)
+Colombi Alessandro e Ghiradi Nicolas 
 Partecipanti sezione Automazione:
-Corda Gabriele e Sofia Locatelli
-asdasfasfasf
+Mattia Burini e Sofia Locatelli
