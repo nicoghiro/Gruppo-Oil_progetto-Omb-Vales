@@ -23,10 +23,10 @@ function Cerca() {
     input = document.getElementById('myInput');
     filter = input.value.toUpperCase();
     if(filter==""){
-      fetchData("http://localhost/web_valves/type_vales");
+      fetchData("https://ombvalvesdata.altervista.org/Web_Valves/index.php/type_vales");
     }
     else
-    fetchData("http://localhost/web_valves/"+filter); 
+    fetchData("https://ombvalvesdata.altervista.org/Web_Valves/index.php/type_vales/"+filter); 
 }
 function svuota_tbody()
 {
@@ -34,7 +34,7 @@ function svuota_tbody()
    collezione.innerHTML = ' '
 }
 function populateModalWithValveData(valveId) {
-  $.get("http://localhost/web_valves/valves/" + valveId, function(valveDetails) {
+  $.get("https://ombvalvesdata.altervista.org/Web_Valves/index.php/valves/" + valveId, function(valveDetails) {
     var modalBody = "<div class='container-fluid'>";
     valveDetails.forEach(function(detail) {
       modalBody += "<div class='row'>" +

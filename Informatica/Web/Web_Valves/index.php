@@ -2,8 +2,8 @@
 
 // Connessione al database
 $servername = "localhost";
-$username = "admin";
-$password = "12345";
+$username = "ombvalvesdata";
+$password = "";
 $dbname = "my_ombvalvesdata";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -34,7 +34,7 @@ try {
             echo $json_tipo;
              exit();
         }
-        if ($array[2] =='valves' && $last_segment != '') {
+        if ($array[3] =='valves' && $last_segment != '') {
             $sql = "SELECT * FROM `valvola` WHERE Tipo_valvola=:valv";
             $stmt = $conn->prepare($sql);
             $inp = $last_segment . '%'; 
@@ -51,7 +51,7 @@ try {
             echo $json_tipo;
              exit();
         }
-        if ($last_segment != '' && $array[2] == 'type_vales') {
+        if ($last_segment != '' && $array[3] == 'type_vales') {
             $sql = "SELECT * FROM `tipo` WHERE `VALVE CODE` LIKE :inp";
             $stmt = $conn->prepare($sql);
             $inp = $last_segment . '%'; 
@@ -69,7 +69,7 @@ try {
             exit();
             
         }
-        if ($last_segment != '' && $array[2] == 'misuration') {
+        if ($last_segment != '' && $array[3] == 'misuration') {
             $sql = "SELECT * FROM `misurazioni` WHERE ser_valvola = :serial";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':serial', $last_segment, PDO::PARAM_STR);
@@ -89,11 +89,29 @@ try {
             exit();
 
         } 
-        if ($last_segment != '' && $array[2] == 'values') {
-           
-            $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis ORDER BY angolo";
+        if ($last_segment == 'a' && $array[3] == 'values'&& $array[4]!='') {
+            $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis AND Fase='a' ORDER BY angolo";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id_mis', $last_segment, PDO::PARAM_STR);
+            $stmt->bindParam(':id_mis', $array[4], PDO::PARAM_STR);
+            $stmt->execute();
+            $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $values_array = array();
+            foreach ($values as $row) {
+                $values_array[] = $row;
+            }
+
+            $json_values = json_encode($values_array);
+            header('Content-Type: application/json');
+           echo $json_values;
+            exit();
+
+        }
+        if ($last_segment == 'c' && $array[3] == 'values'&& $array[4]!='') {
+          $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis AND Fase='c' ORDER BY angolo DESC";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id_mis',  $array[4], PDO::PARAM_STR);
             $stmt->execute();
             $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -137,21 +155,19 @@ try {
         foreach ($result as $row) {
             $id = $row['id_misurazione'];
         }
-
-        // Inserisci i valori nella tabella 'valori'
         foreach ($misurazioni as $misurazione) {
             $parts = explode(';', $misurazione);
             $coppia = $parts[0];
             $angolo = $parts[1];
-            $data_valore = $parts[2];
-
-            // Crea un nuovo statement per ogni inserimento
-            $sql = "INSERT INTO valori (coppia, angolo, orario_valore, id_misurazione) VALUES (:coppia, :angolo, :data_valore, :id)";
+            $data_valore = $parts[3];
+            $fase = $parts[2];
+            $sql = "INSERT INTO valori (angolo, coppia, orario_valore, id_misurazione, Fase) VALUES (:coppia, :angolo, :data_valore, :id, :fase)";
             $statement_valori = $conn->prepare($sql);
             $statement_valori->bindParam(':coppia', $coppia, PDO::PARAM_STR);
             $statement_valori->bindParam(':angolo', $angolo, PDO::PARAM_STR);
             $statement_valori->bindParam(':data_valore', $data_valore, PDO::PARAM_STR);
             $statement_valori->bindParam(':id', $id, PDO::PARAM_STR);
+            $statement_valori->bindParam(':fase', $fase, PDO::PARAM_STR);
             $statement_valori->execute();
         }
     }
