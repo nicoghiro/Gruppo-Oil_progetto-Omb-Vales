@@ -5,22 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valves Page</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="script/function.js"></script>
   <link rel="stylesheet" href="css/omb.css">
 </head>
 <body>
-    <script>
-    $(document).ready(function() {
-        fetchData("https://ombvalvesdata.altervista.org/Web_Valves/index.php/type_vales");
-      })
-   </script>
   <div>
     <h2 id="intestation">Valve types</h2>
     <input type="text" id="myInput" onkeyup="Cerca()" placeholder="Search for valve code">
-    <img id ="imagine" src="image/logo.png" alt="logo omb-valves">
+    <img id="imagine" src="image/logo.png" alt="logo omb-valves">
     <table class="table">
       <thead class="thead-dark" style="width: 100%;">
         <tr>
@@ -28,7 +19,7 @@
           <th>Valve Description</th>
           <th>Gear Model</th>
           <th>M.A. Gear</th>
-          <th>Actions</th>
+          <th colspan="2">Actions</th>
         </tr>
       </thead>
       <tbody id="valvesTableBody">
@@ -49,5 +40,23 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="valuesModal" tabindex="-1" role="dialog" aria-labelledby="valuesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="valuesModalLabel">Expected Values</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="valuesModalBody">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script/function.js"></script>
 </body>
 </html>

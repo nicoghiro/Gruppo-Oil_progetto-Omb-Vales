@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // Get the serial number from the URL query parameters
     var serialNumber = new URLSearchParams(window.location.search).get('serial_number');
-    fetchMeasurements("https://ombvalvesdata.altervista.org/Web_Valves/index.php/misuration/" + serialNumber);
+    fetchMeasurements("http://localhost/Web_Valves/misuration/" + serialNumber);
   });
   
   function fetchMeasurements(url) {

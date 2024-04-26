@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var measurementId = new URLSearchParams(window.location.search).get('measurement');
-  fetchValues("https://ombvalvesdata.altervista.org/Web_Valves/index.php/values/" + measurementId + "/a", "apertura", "aperturaChart");
-  fetchValues("https://ombvalvesdata.altervista.org/Web_Valves/index.php/values/" + measurementId + "/c", "chiusura", "chiusuraChart");
+  fetchValues("http://localhost/Web_Valves/values/" + measurementId + "/a", "apertura", "aperturaChart");
+  fetchValues("http://localhost/Web_Valves/values/" + measurementId + "/c", "chiusura", "chiusuraChart");
 });
 
 function fetchValues(url, type, chartId) {

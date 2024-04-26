@@ -2,8 +2,8 @@
 
 // Connessione al database
 $servername = "localhost";
-$username = "ombvalvesdata";
-$password = "";
+$username = "admin";
+$password = "12345";
 $dbname = "my_ombvalvesdata";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -34,7 +34,23 @@ try {
             echo $json_tipo;
              exit();
         }
-        if ($array[3] =='valves' && $last_segment != '') {
+        if ($array[2] =='specifiche' && $last_segment != '') {
+            $sql = "SELECT * FROM `specifiche` WHERE ID_tipo=:tip";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':tip', $last_segment, PDO::PARAM_STR);
+            $stmt->execute();
+            $tipo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tipo_array = array();
+            foreach ($tipo as $row) {
+                $tipo_array[] = $row;
+            }
+            $json_tipo = json_encode($tipo_array);
+            header('Content-Type: application/json');
+            http_response_code(200);
+            echo $json_tipo;
+             exit();
+        }
+        if ($array[2] =='valves' && $last_segment != '') {
             $sql = "SELECT * FROM `valvola` WHERE Tipo_valvola=:valv";
             $stmt = $conn->prepare($sql);
             $inp = $last_segment . '%'; 
@@ -51,7 +67,7 @@ try {
             echo $json_tipo;
              exit();
         }
-        if ($last_segment != '' && $array[3] == 'type_vales') {
+        if ($last_segment != '' && $array[2] == 'type_vales') {
             $sql = "SELECT * FROM `tipo` WHERE `VALVE CODE` LIKE :inp";
             $stmt = $conn->prepare($sql);
             $inp = $last_segment . '%'; 
@@ -69,7 +85,7 @@ try {
             exit();
             
         }
-        if ($last_segment != '' && $array[3] == 'misuration') {
+        if ($last_segment != '' && $array[2] == 'misuration') {
             $sql = "SELECT * FROM `misurazioni` WHERE ser_valvola = :serial";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':serial', $last_segment, PDO::PARAM_STR);
@@ -89,10 +105,10 @@ try {
             exit();
 
         } 
-        if ($last_segment == 'a' && $array[3] == 'values'&& $array[4]!='') {
+        if ($last_segment == 'a' && $array[2] == 'values'&& $array[3]!='') {
             $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis AND Fase='a' ORDER BY angolo";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id_mis', $array[4], PDO::PARAM_STR);
+            $stmt->bindParam(':id_mis', $array[3], PDO::PARAM_STR);
             $stmt->execute();
             $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -107,11 +123,11 @@ try {
             exit();
 
         }
-        if ($last_segment == 'c' && $array[3] == 'values'&& $array[4]!='') {
+        if ($last_segment == 'c' && $array[2] == 'values'&& $array[3]!='') {
           $sql = "SELECT * FROM `valori` WHERE id_misurazione = :id_mis AND Fase='c' ORDER BY angolo DESC";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id_mis',  $array[4], PDO::PARAM_STR);
+            $stmt->bindParam(':id_mis',  $array[3], PDO::PARAM_STR);
             $stmt->execute();
             $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
