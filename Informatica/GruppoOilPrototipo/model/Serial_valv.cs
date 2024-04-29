@@ -15,7 +15,7 @@ namespace GruppoOilPrototipo.view
     {
         public string Codice_ser {  get; private set; }
         [JsonIgnore]
-        static HttpClient client = new HttpClient();
+        static HttpClient client;
         public Serial_valv(string codice_ser)
         {
             Codice_ser = codice_ser;
@@ -30,6 +30,10 @@ namespace GruppoOilPrototipo.view
                 product = await JsonSerializer.DeserializeAsync<List<string>>(await response.Content.ReadAsStreamAsync());
             }
             return product;
+        }
+        static public void avviaClient()
+        {
+            client = new HttpClient();
         }
         static public async Task<List<string>> POP_SER()
         {
@@ -46,6 +50,7 @@ namespace GruppoOilPrototipo.view
             {
                 throw new Exception("nessun codice seriale trovato");
             }
+            client.Dispose();
             return Serials;
         }
     }

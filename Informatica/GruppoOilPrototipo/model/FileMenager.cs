@@ -87,7 +87,12 @@ namespace GruppoOilPrototipo
                 if (line == "f") form.Stop();
                 scriviAppend(line);
                 NumeroMisurazioni++;
-                if (NumeroMisurazioni == SettingsMenager.MaxMisurazioni + 3 && SettingsMenager.MaxMisurazioni!=0) form.Stop();
+                if (NumeroMisurazioni == SettingsMenager.MaxMisurazioni + 3 && SettingsMenager.MaxMisurazioni != 0)
+                {
+                    MessageBox.Show("Misurazioni massime raggiunte");
+                    form.Stop();
+                    
+                }
             }
             else { throw new Exception("Valore nullo"); }
         }

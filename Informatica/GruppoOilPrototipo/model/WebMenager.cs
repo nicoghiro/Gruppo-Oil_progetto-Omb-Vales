@@ -20,12 +20,18 @@ namespace GruppoOilPrototipo.view
             Codice_seriale = null;
             inf_misurazioni = null;
             mis=null;
+            client=new HttpClient();
+            
+        }
+        public static void avviaClient()
+        {
+            client = new HttpClient();
         }
          public Serial_valv Codice_seriale { get; set; }
          public Inf_misurazioni inf_misurazioni { get;  set; }
         public Misurazioni mis {get;  set; }
         [JsonIgnore]
-        static HttpClient client = new HttpClient();
+        static HttpClient client;
 
         public async Task<Uri> Invio_Dati(WebMenager web) {
             client.BaseAddress = new Uri("http://ombvalvesdata.altervista.org/Web_Valves/index.php");
@@ -36,6 +42,7 @@ namespace GruppoOilPrototipo.view
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await client.PostAsync("http://ombvalvesdata.altervista.org/Web_Valves/index.php", content);
             response.EnsureSuccessStatusCode();
+            client.Dispose();
             return response.Headers.Location;
         }
         

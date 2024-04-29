@@ -17,9 +17,9 @@ namespace GruppoOilPrototipo
 {
     public partial class Form1 : Form
     {
-        public WebMenager webMenager = new WebMenager();
+        public WebMenager webMenager;
         ArduinoReader ar;
-        Misurazioni mis = new Misurazioni();
+        Misurazioni mis;
         FileMenager fm;
         bool misurazioneAttiva;
       
@@ -31,6 +31,8 @@ namespace GruppoOilPrototipo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            webMenager = new WebMenager();
+            mis = new Misurazioni();
             SettingsMenager sm = new SettingsMenager();
             ar =new ArduinoReader(this);
             fm = ar.getFileMenager();
@@ -101,8 +103,11 @@ namespace GruppoOilPrototipo
         public async void Stop()
         {
             ar.fine();
+            
             webMenager.mis = mis;
+            
             Uri destination = await webMenager.Invio_Dati(webMenager);
+            WebMenager.avviaClient();
             misurazioneAttiva = false;
             avviaButton.Enabled = true;
             terminaButton.Enabled = false;

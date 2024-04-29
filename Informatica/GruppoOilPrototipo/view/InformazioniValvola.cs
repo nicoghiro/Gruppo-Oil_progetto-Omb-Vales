@@ -40,6 +40,7 @@ namespace GruppoOilPrototipo.model
 
         private async void InformazioniValvola_Load(object sender, EventArgs e)
         {
+            Serial_valv.avviaClient();
            List<string> SerNum= await Serial_valv.POP_SER();
             PopolaCmb(SerNum);   
            

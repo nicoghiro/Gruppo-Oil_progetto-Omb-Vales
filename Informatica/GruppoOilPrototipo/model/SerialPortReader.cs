@@ -125,7 +125,7 @@ namespace GruppoOilPrototipo
                 int angolo = int.Parse(tmp[0]);
                 if (angoloPrec != null) 
                 {
-                    if (angoloPrec > angolo)
+                    if (angoloPrec >= angolo)
                     {
                         line += ";c";
                         data.Input(line);
