@@ -111,14 +111,14 @@ namespace GruppoOilPrototipo
                 string orarioMisurazione = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString() + "," + DateTime.Now.Millisecond.ToString();
                 if (apertura)
                 {
-                    ws.Cell("A" + misurazioniApertura).Value = content.Split(';')[0];
-                    ws.Cell("B" + misurazioniApertura).Value = content.Split(';')[1];
+                    ws.Cell("A" + misurazioniApertura).Value = "=" + content.Split(';')[0];
+                    ws.Cell("B" + misurazioniApertura).Value = "=" + content.Split(';')[1];
                     ws.Cell("C" + misurazioniApertura).Value = orarioMisurazione;
                     misurazioniApertura++;
                 } else
                 {
-                    ws.Cell("A" + misurazioniChiusura).Value = content.Split(';')[0];
-                    ws.Cell("B" + misurazioniChiusura).Value = content.Split(';')[1];
+                    ws.Cell("A" + misurazioniChiusura).Value = "=" + content.Split(';')[0];
+                    ws.Cell("B" + misurazioniChiusura).Value = "=" + content.Split(';')[1];
                     ws.Cell("C" + misurazioniChiusura).Value = orarioMisurazione;
                     misurazioniChiusura++;
                 }
