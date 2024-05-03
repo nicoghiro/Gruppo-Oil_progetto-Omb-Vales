@@ -38,7 +38,6 @@
             this.misurazioni = new System.Windows.Forms.Label();
             this.porta = new System.Windows.Forms.Label();
             this.id = new System.Windows.Forms.Label();
-            this.nome = new System.Windows.Forms.Label();
             this.terminaButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -47,10 +46,9 @@
             // avviaButton
             // 
             this.avviaButton.BackColor = System.Drawing.Color.White;
-            this.avviaButton.Location = new System.Drawing.Point(185, 417);
-            this.avviaButton.Margin = new System.Windows.Forms.Padding(4);
+            this.avviaButton.Location = new System.Drawing.Point(139, 339);
             this.avviaButton.Name = "avviaButton";
-            this.avviaButton.Size = new System.Drawing.Size(183, 55);
+            this.avviaButton.Size = new System.Drawing.Size(137, 45);
             this.avviaButton.TabIndex = 0;
             this.avviaButton.Text = "Avvia misurazione";
             this.avviaButton.UseVisualStyleBackColor = false;
@@ -61,11 +59,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(185, 31);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(139, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(685, 379);
+            this.dataGridView1.Size = new System.Drawing.Size(514, 308);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -74,10 +71,9 @@
             this.apriCartellaButton.BackColor = System.Drawing.Color.Azure;
             this.apriCartellaButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.apriCartellaButton.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.apriCartellaButton.Location = new System.Drawing.Point(879, 31);
-            this.apriCartellaButton.Margin = new System.Windows.Forms.Padding(4);
+            this.apriCartellaButton.Location = new System.Drawing.Point(659, 25);
             this.apriCartellaButton.Name = "apriCartellaButton";
-            this.apriCartellaButton.Size = new System.Drawing.Size(172, 28);
+            this.apriCartellaButton.Size = new System.Drawing.Size(129, 23);
             this.apriCartellaButton.TabIndex = 3;
             this.apriCartellaButton.Text = "Apri cartella";
             this.apriCartellaButton.UseVisualStyleBackColor = false;
@@ -91,7 +87,8 @@
             this.opzioni});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1065, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(799, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -102,29 +99,30 @@
             this.portaComToolStripMenuItem,
             this.mAXMisurazioniToolStripMenuItem});
             this.opzioni.Name = "opzioni";
-            this.opzioni.Size = new System.Drawing.Size(75, 24);
+            this.opzioni.Size = new System.Drawing.Size(60, 20);
             this.opzioni.Text = "Opzioni";
             // 
             // portaComToolStripMenuItem
             // 
             this.portaComToolStripMenuItem.Name = "portaComToolStripMenuItem";
-            this.portaComToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.portaComToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.portaComToolStripMenuItem.Text = "Porta Com";
             this.portaComToolStripMenuItem.Click += new System.EventHandler(this.portaComToolStripMenuItem_Click);
             // 
             // mAXMisurazioniToolStripMenuItem
             // 
             this.mAXMisurazioniToolStripMenuItem.Name = "mAXMisurazioniToolStripMenuItem";
-            this.mAXMisurazioniToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.mAXMisurazioniToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.mAXMisurazioniToolStripMenuItem.Text = "MAX. misurazioni";
             this.mAXMisurazioniToolStripMenuItem.Click += new System.EventHandler(this.mAXMisurazioniToolStripMenuItem_Click);
             // 
             // misurazioni
             // 
             this.misurazioni.AutoSize = true;
-            this.misurazioni.Location = new System.Drawing.Point(15, 119);
+            this.misurazioni.Location = new System.Drawing.Point(11, 97);
+            this.misurazioni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.misurazioni.Name = "misurazioni";
-            this.misurazioni.Size = new System.Drawing.Size(101, 16);
+            this.misurazioni.Size = new System.Drawing.Size(81, 13);
             this.misurazioni.TabIndex = 5;
             this.misurazioni.Text = "Max misuazioni:";
             this.misurazioni.Click += new System.EventHandler(this.label1_Click);
@@ -132,36 +130,31 @@
             // porta
             // 
             this.porta.AutoSize = true;
-            this.porta.Location = new System.Drawing.Point(15, 153);
+            this.porta.Location = new System.Drawing.Point(11, 124);
+            this.porta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.porta.Name = "porta";
-            this.porta.Size = new System.Drawing.Size(45, 16);
+            this.porta.Size = new System.Drawing.Size(38, 13);
             this.porta.TabIndex = 6;
             this.porta.Text = "Porta: ";
             // 
             // id
             // 
             this.id.AutoSize = true;
-            this.id.Location = new System.Drawing.Point(18, 184);
+            this.id.Location = new System.Drawing.Point(14, 150);
+            this.id.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(26, 16);
+            this.id.Size = new System.Drawing.Size(42, 13);
             this.id.TabIndex = 7;
-            this.id.Text = "ID: ";
-            // 
-            // nome
-            // 
-            this.nome.AutoSize = true;
-            this.nome.Location = new System.Drawing.Point(18, 216);
-            this.nome.Name = "nome";
-            this.nome.Size = new System.Drawing.Size(47, 16);
-            this.nome.TabIndex = 8;
-            this.nome.Text = "Nome:";
+            this.id.Text = "Seriale:";
+            this.id.Click += new System.EventHandler(this.id_Click);
             // 
             // terminaButton
             // 
             this.terminaButton.BackColor = System.Drawing.Color.White;
-            this.terminaButton.Location = new System.Drawing.Point(687, 417);
+            this.terminaButton.Location = new System.Drawing.Point(515, 339);
+            this.terminaButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.terminaButton.Name = "terminaButton";
-            this.terminaButton.Size = new System.Drawing.Size(183, 55);
+            this.terminaButton.Size = new System.Drawing.Size(137, 45);
             this.terminaButton.TabIndex = 9;
             this.terminaButton.Text = "Termina misurazione";
             this.terminaButton.UseVisualStyleBackColor = false;
@@ -169,12 +162,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(1065, 499);
+            this.ClientSize = new System.Drawing.Size(799, 405);
             this.Controls.Add(this.terminaButton);
-            this.Controls.Add(this.nome);
             this.Controls.Add(this.id);
             this.Controls.Add(this.porta);
             this.Controls.Add(this.misurazioni);
@@ -183,7 +175,6 @@
             this.Controls.Add(this.avviaButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -207,7 +198,6 @@
         private System.Windows.Forms.Label misurazioni;
         private System.Windows.Forms.Label porta;
         private System.Windows.Forms.Label id;
-        private System.Windows.Forms.Label nome;
         private System.Windows.Forms.Button terminaButton;
     }
 }

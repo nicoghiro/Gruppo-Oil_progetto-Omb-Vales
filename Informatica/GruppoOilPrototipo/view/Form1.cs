@@ -54,8 +54,12 @@ namespace GruppoOilPrototipo
         {
             porta.Text ="Porta: " + SettingsMenager.Porta;
             misurazioni.Text = "Max misurazioni: " + SettingsMenager.MaxMisurazioni;
-            id.Text = "ID: " + SettingsMenager.IDValvola;
-            nome.Text = "Nome: " + SettingsMenager.NomeValvola;
+            
+           // nome.Text = "Nome: " + SettingsMenager.NomeValvola;
+        }
+        public void VisualizzaSeriale()
+        {
+            id.Text = "Seriale: " + webMenager.Codice_seriale.Codice_ser;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -174,6 +178,12 @@ namespace GruppoOilPrototipo
                 fm.StopMisurazione();
                 MessageBox.Show(ex.Message);
             }
+
+        }
+
+        private void id_Click(object sender, EventArgs e)
+        {
+
 
         }
     }

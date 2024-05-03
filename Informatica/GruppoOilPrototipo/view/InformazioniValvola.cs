@@ -32,8 +32,11 @@ namespace GruppoOilPrototipo.model
             Inf_misurazioni Inf = new Inf_misurazioni();
             form1.webMenager.inf_misurazioni = Inf;
             form1.webMenager.Codice_seriale = Ser;
+            form1.VisualizzaSeriale();
+            PortaCom porta = new PortaCom();
                 this.Hide();
-                form1.Show();
+                porta.ShowDialog();
+                //form1.Show();
                 this.Close();
          
         }
