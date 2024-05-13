@@ -57,11 +57,15 @@ namespace GruppoOilPrototipo
                 if (os.Platform == PlatformID.Unix)
                 {
                     portLinux.Connect();
+                    string inizio = "1";
+                    byte[] bytes = Encoding.UTF8.GetBytes(inizio);
+                    portLinux.SendMessage(bytes);
                 }
                 else
                 {
                     portWindows.PortName = SettingsMenager.Porta;
                     portWindows.Open();
+                    portWindows.Write("1");
                 };
 
 
@@ -77,16 +81,24 @@ namespace GruppoOilPrototipo
             OperatingSystem os = Environment.OSVersion;
             if (os.Platform == PlatformID.Unix)
             {
+                string fine = "0";
+                byte[] bytes = Encoding.UTF8.GetBytes(fine);
+                portLinux.SendMessage(bytes);
                 closeDownThread = new Thread(CloseSerialOnExit);
                 closeDownThread.Start();
+                //CloseSerialOnExit();
                 Console.WriteLine("Misurazione terminata");
             }
             else
             {
+                portWindows.Write("0");
                 CloseDown = new System.Threading.Thread(new System.Threading.ThreadStart(CloseSerialOnExit));
                 CloseDown.Start();
+                //CloseSerialOnExit();
                 MessageBox.Show("Misurazione terminata");
+                
             }
+           
             Data.FineMisurazione();
         }
 
@@ -97,8 +109,10 @@ namespace GruppoOilPrototipo
                 OperatingSystem os = Environment.OSVersion;
                 if (os.Platform == PlatformID.Unix)
                 {
-                    portLinux.Disconnect(); //close the serial port
+                    portLinux.Disconnect();//close the serial port
                 } else portWindows.Close();
+            
+
             }
             catch (Exception ex)
             {

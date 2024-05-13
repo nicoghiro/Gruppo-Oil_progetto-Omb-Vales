@@ -9,7 +9,7 @@ using System.IO;
 using System.Windows.Forms;
 using GruppoOilPrototipo.view;
 using DocumentFormat.OpenXml.Spreadsheet;
-
+using System.Diagnostics;
 namespace GruppoOilPrototipo
 {
     public class FileMenager
@@ -69,7 +69,7 @@ namespace GruppoOilPrototipo
         {
            if (!misurazioneAttiva)
            {
-                
+                MessageBox.Show(Process.GetCurrentProcess().Id.ToString());
                 wb = new XLWorkbook(filePath);
                 misurazioniErrate = 0;
                     nuovoFile();
@@ -90,6 +90,7 @@ namespace GruppoOilPrototipo
                 if (NumeroMisurazioni == SettingsMenager.MaxMisurazioni + 3 && SettingsMenager.MaxMisurazioni != 0)
                 {
                     MessageBox.Show("Misurazioni massime raggiunte");
+                    
                     form.Stop();
                     
                 }
@@ -102,7 +103,7 @@ namespace GruppoOilPrototipo
             bool apertura=true;
             try
                 {
-                var ws= wb.Worksheet("Apertura"); ;
+                var ws= wb.Worksheet("Apertura"); 
                 if (content.Split(';')[2] == "c")
                 {
                     apertura = false;
@@ -136,11 +137,12 @@ namespace GruppoOilPrototipo
         {
             // if (misurazioneAttiva== true)
             //{
-            MessageBox.Show(SerialeValvola);
             var wsInfo = wb.Worksheet("Info");
             wsInfo.Cell("A2").Value = SerialeValvola;
             wsInfo.Cell("B2").Value = NumeroMisurazioni - 3;
             wsInfo.Cell("C2").Value = misurazioniErrate;
+            wsInfo = null;
+            MessageBox.Show(Process.GetCurrentProcess().Id.ToString());
             wb.SaveAs($@"{AppDomain.CurrentDomain.BaseDirectory}Misurazioni/{SerialeValvola}-{DataFile}.xlsx");
             wb.Dispose();
             StopMisurazione();

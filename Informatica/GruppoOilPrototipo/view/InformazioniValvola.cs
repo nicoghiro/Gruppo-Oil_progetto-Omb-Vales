@@ -26,18 +26,16 @@ namespace GruppoOilPrototipo.model
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+                {
             Serial_valv Ser = new Serial_valv(CMB_NumSer.Text);
 
             Inf_misurazioni Inf = new Inf_misurazioni();
             form1.webMenager.inf_misurazioni = Inf;
             form1.webMenager.Codice_seriale = Ser;
             form1.VisualizzaSeriale();
-            PortaCom porta = new PortaCom();
-                this.Hide();
-                porta.ShowDialog();
-                //form1.Show();
-                this.Close();
+            this.Hide();
+            form1.Show();
+            this.Close();
          
         }
 
